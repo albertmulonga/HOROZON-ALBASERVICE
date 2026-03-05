@@ -16,9 +16,9 @@ if (isset($_SESSION['cart'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?? 'HOROZON ALBASERVICE' ?></title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" href="/favicon.ico">
-    <script src="/js/main.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
     <header class="header">
