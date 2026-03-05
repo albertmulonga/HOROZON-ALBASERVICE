@@ -1,9 +1,10 @@
 "use server";
 
 import { db } from "@/db";
-import { products, categories } from "@/db/schema";
+import { products, categories, users } from "@/db/schema";
 import { eq, desc, like, and, gt } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { hashPassword } from "@/lib/auth";
 
 export async function getProducts(categoryId?: number, search?: string) {
   let query = db.select().from(products).where(eq(products.isActive, true));
@@ -150,6 +151,20 @@ export async function deleteCategory(id: number) {
 // Initialize default data (categories, products, settings)
 export async function initializeData() {
   const existingCategories = await db.select().from(categories).limit(1);
+  
+  // Always ensure admin exists
+  const existingAdmin = await db.select().from(users).where(eq(users.email, "vente@gmail.com")).limit(1);
+  if (existingAdmin.length === 0) {
+    const adminPassword = await hashPassword("admin.com");
+    await db.insert(users).values({
+      name: "Administrateur",
+      email: "vente@gmail.com",
+      phone: "+243 000 000 001",
+      password: adminPassword,
+      role: "admin",
+    });
+  }
+
   if (existingCategories.length > 0) return;
 
   // Create default categories

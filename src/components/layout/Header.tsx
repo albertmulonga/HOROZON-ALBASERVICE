@@ -204,10 +204,10 @@ export default function Header({ user }: { user: User | null }) {
                   </Link>
                   <Link
                     href="/register"
-                    className="flex-1 px-3 py-2 text-center text-sm font-medium text-white bg-blue"
+                    className="flex-1 px-3 py-2 text-center text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Cré-600 rounded-mder un compte
+                    Créer un compte
                   </Link>
                 </div>
               )}
