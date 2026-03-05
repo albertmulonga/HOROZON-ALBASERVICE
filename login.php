@@ -106,7 +106,7 @@ include 'components/header.php';
     <!-- Right Side - Video/Visual -->
     <div class="login-visual-section">
         <video autoplay muted loop playsinline class="login-bg-video">
-            <source src="https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/5362205/5362205-uhd_2560_1440_25fps.mp4" type="video/mp4">
         </video>
         <div class="login-video-overlay"></div>
         <div class="login-visual-content">
