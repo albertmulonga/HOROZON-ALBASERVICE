@@ -87,7 +87,7 @@ export default function LoginPage() {
 
           <div className="mt-8 pt-6 border-t border-gray-200">
             <p className="text-sm text-gray-500 text-center">
-              Compte admin: <strong>admin@hirizon.com</strong> / <strong>admin123</strong>
+              Compte admin: <strong>vente@gmail.com</strong> / <strong>admin.com</strong>
             </p>
           </div>
         </div>

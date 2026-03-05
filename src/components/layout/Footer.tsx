@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-2xl font-bold text-blue-400 mb-4">HIRIZON DE KINDU</h3>
+            <h3 className="text-2xl font-bold text-blue-400 mb-4">HOROZON ALBASERVICE</h3>
             <p className="text-gray-400 mb-4">
               Votre plateforme d'achat en ligne de confiance à Kindu. 
               Nous proposons des vêtements, sacs, chaussures et accessoires de qualité.
@@ -86,7 +86,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} HIRIZON DE KINDU. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} HOROZON ALBASERVICE. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

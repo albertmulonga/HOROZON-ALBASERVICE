@@ -8,7 +8,7 @@ import { getUser } from "@/lib/auth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HIRIZON DE KINDU - Votre Boutique en Ligne",
+  title: "HOROZON ALBASERVICE - Votre Boutique en Ligne",
   description: "Plateforme e-commerce de confiance à Kindu. Vêtements, sacs, chaussures et accessoires de qualité.",
 };
 

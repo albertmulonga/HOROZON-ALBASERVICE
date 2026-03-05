@@ -119,7 +119,7 @@ export async function initializeSettings() {
   
   if (!existingPaymentNumber) {
     await setSetting("payment_phone", "+243 000 000 000");
-    await setSetting("shop_name", "HIRIZON DE KINDU");
+    await setSetting("shop_name", "HOROZON ALBASERVICE");
     await setSetting("shop_address", "Kindu, Congo");
   }
 }
@@ -164,10 +164,10 @@ export async function initializeData() {
     }
 
     // Create admin user
-    const adminPassword = await hashPassword("admin123");
+    const adminPassword = await hashPassword("admin.com");
     await db.insert(users).values({
       name: "Administrateur",
-      email: "admin@hirizon.com",
+      email: "vente@gmail.com",
       phone: "+243 000 000 001",
       password: adminPassword,
       role: "admin",
