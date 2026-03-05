@@ -1,10 +1,10 @@
-# Active Context: E-commerce HOROZON ALBASERVICE (PHP + MySQL)
+# Active Context: E-commerce HIRIZON DE KINDU (PHP + MySQL)
 
 ## Current State
 
-**Project Status**: ✅ En cours de conversion vers PHP + MySQL
+**Project Status**: ✅ Conversion complète vers PHP + MySQL terminée
 
-La plateforme e-commerce HOROZON ALBASERVICE est en cours de conversion de Next.js vers PHP avec MySQL.
+La plateforme e-commerce HIRIZON DE KINDU est une plateforme de vente en ligne complète avec suivi GPS.
 
 ## Recently Completed
 
@@ -16,7 +16,12 @@ La plateforme e-commerce HOROZON ALBASERVICE est en cours de conversion de Next.
 - [x] Gestion admin: produits, utilisateurs
 - [x] Panier et checkout avec paiement Mobile Money
 - [x] API PHP pour les commandes
-- [x] Suppression de l'ancien projet Next.js
+- [x] Renommage en HIRIZON DE KINDU
+- [x] Page Promotions
+- [x] Gestion commandes admin avec validation paiement
+- [x] Gestion livreurs
+- [x] Suivi GPS en temps réel avec Google Maps
+- [x] API de géolocalisation
 
 ## Current Structure (PHP)
 
@@ -27,6 +32,7 @@ La plateforme e-commerce HOROZON ALBASERVICE est en cours de conversion de Next.
 | `css/style.css` | Styles CSS complets |
 | `js/main.js` | JavaScript client |
 | `index.php` | Page d'accueil |
+| `promotions.php` | Page des promotions |
 | `login.php` | Page de connexion |
 | `register.php` | Page d'inscription |
 | `logout.php` | Déconnexion |
@@ -38,8 +44,12 @@ La plateforme e-commerce HOROZON ALBASERVICE est en cours de conversion de Next.
 | `admin/index.php` | Dashboard Admin |
 | `admin/produits.php` | Gestion produits |
 | `admin/utilisateurs.php` | Gestion utilisateurs |
+| `admin/commandes.php` | Gestion commandes + validation paiement |
+| `admin/livreurs.php` | Gestion livreurs |
 | `client/index.php` | Dashboard Client |
-| `livreur/index.php` | Dashboard Livreur |
+| `client/commande.php` | Détails commande avec suivi GPS |
+| `livreur/index.php` | Dashboard Livreur avec GPS |
+| `api/orders/` | API commandes et géolocalisation |
 
 ## Session History
 
