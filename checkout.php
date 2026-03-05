@@ -64,14 +64,18 @@ include 'components/header.php';
                 <div class="flex items-center gap-4">
                     <div class="form-group flex-1">
                         <label class="form-label">Latitude</label>
-                        <input type="text" name="customer_latitude" id="customer_latitude" class="form-input" value="<?= htmlspecialchars($user['latitude'] ?? '') ?>" readonly placeholder="Cliquez sur le bouton pour obtenir">
+                        <input type="text" name="customer_latitude" id="customer_latitude" class="form-input gps-input" value="<?= htmlspecialchars($user['latitude'] ?? '') ?>" readonly placeholder="Cliquez sur le bouton">
                     </div>
                     <div class="form-group flex-1">
                         <label class="form-label">Longitude</label>
-                        <input type="text" name="customer_longitude" id="customer_longitude" class="form-input" value="<?= htmlspecialchars($user['longitude'] ?? '') ?>" readonly placeholder="Cliquez sur le bouton pour obtenir">
+                        <input type="text" name="customer_longitude" id="customer_longitude" class="form-input gps-input" value="<?= htmlspecialchars($user['longitude'] ?? '') ?>" readonly placeholder="Cliquez sur le bouton">
                     </div>
                 </div>
-                <button type="button" onclick="getUserLocation()" class="btn btn-secondary mt-2">
+                <button type="button" onclick="getUserLocation()" class="btn-gps mt-3">
+                    <svg class="gps-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
                     📍 Obtenir ma position GPS
                 </button>
             </div>

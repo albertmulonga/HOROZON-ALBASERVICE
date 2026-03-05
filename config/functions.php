@@ -377,7 +377,7 @@ function createUserByAdmin($name, $email, $phone, $password, $role, $address = n
 }
 
 // Inscription d'un client (self-registration)
-function registerUser($name, $email, $phone = null, $password) {
+function registerUser($name, $email, $phone = null, $password, $profileImage = null) {
     $db = getDB();
     
     // Vérifier si l'email existe déjà
@@ -391,11 +391,11 @@ function registerUser($name, $email, $phone = null, $password) {
     $passwordHash = hashPassword($password);
     
     // Par défaut, les nouveaux inscrits sont des clients
-    $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role, is_active) 
-                          VALUES (?, ?, ?, ?, 'client', 1)");
+    $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, profile_image, role, is_active) 
+                          VALUES (?, ?, ?, ?, ?, 'client', 1)");
     
     try {
-        $stmt->execute([$name, strtolower($email), $phone, $passwordHash]);
+        $stmt->execute([$name, strtolower($email), $phone, $passwordHash, $profileImage]);
         
         return ['success' => true, 'message' => 'Compte créé avec succès! Vous pouvez maintenant passer vos commandes.'];
     } catch (Exception $e) {

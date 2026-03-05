@@ -143,9 +143,9 @@ CREATE TABLE IF NOT EXISTS settings (
 -- =====================================================
 -- DONNÉES PAR DÉFAUT - ADMIN
 -- =====================================================
--- Mot de passe: admin.com (hashé en bcrypt)
+-- Mot de passe: admin.com (hash SHA256)
 INSERT INTO users (name, email, phone, password, role) VALUES 
-('Administrateur', 'vente@gmail.com', '+243 000 000 001', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+('Administrateur', 'vente@gmail.com', '+243 000 000 001', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'admin');
 
 -- =====================================================
 -- DONNÉES PAR DÉFAUT - CATÉGORIES
@@ -182,16 +182,16 @@ INSERT INTO settings (setting_key, setting_value) VALUES
 -- =====================================================
 -- CRÉER UN UTILISATEUR TEST (CLIENT)
 -- =====================================================
--- Mot de passe: test123
+-- Mot de passe: test123 (hash SHA256)
 INSERT INTO users (name, email, phone, password, role, address, city, latitude, longitude) VALUES 
-('Client Test', 'test@gmail.com', '+243 000 000 002', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'client', 'Avenue du Commerce', 'Kindu', -2.9437, 25.9225);
+('Client Test', 'test@gmail.com', '+243 000 000 002', 'ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae', 'client', 'Avenue du Commerce', 'Kindu', -2.9437, 25.9225);
 
 -- =====================================================
 -- CRÉER UN LIVREUR TEST
 -- =====================================================
--- Mot de passe: livreur123
+-- Mot de passe: livreur123 (hash SHA256)
 INSERT INTO users (name, email, phone, password, role, address, city, latitude, longitude) VALUES 
-('Livreur Test', 'livreur@gmail.com', '+243 000 000 003', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'livreur', 'Avenue Principale', 'Kindu', -2.9437, 25.9225);
+('Livreur Test', 'livreur@gmail.com', '+243 000 000 003', 'eb82fe97f96e347442a06ce0a5b2a7a6c41f30e0dfe5cf2d79e7a81d40f6561e', 'livreur', 'Avenue Principale', 'Kindu', -2.9437, 25.9225);
 
 -- =====================================================
 -- CRÉER UNE COMMANDE TEST

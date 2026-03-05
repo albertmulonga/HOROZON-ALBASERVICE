@@ -21,6 +21,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmPassword = $_POST['confirm_password'] ?? '';
     $captchaAnswer = $_POST['captcha_answer'] ?? '';
     $captchaReal = $_POST['captcha_real'] ?? '';
+    $profileImage = null;
+    
+    // Handle profile image upload
+    if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === 0) {
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $fileType = $_FILES['profile_image']['type'];
+        $fileSize = $_FILES['profile_image']['size'];
+        
+        if (in_array($fileType, $allowedTypes) && $fileSize <= 2 * 1024 * 1024) {
+            $uploadDir = 'uploads/profile/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
+            $newFilename = uniqid('profile_') . '.' . $extension;
+            $targetPath = $uploadDir . $newFilename;
+            
+            if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetPath)) {
+                $profileImage = $targetPath;
+            }
+        }
+    }
     
     // Verify captcha
     if ($captchaAnswer !== $captchaReal) {
@@ -30,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($password) < 6) {
         $error = 'Le mot de passe doit contenir au moins 6 caractères.';
     } else {
-        $result = registerUser($name, $email, $phone, $password);
+        $result = registerUser($name, $email, $phone, $password, $profileImage);
         
         if (isset($result['error'])) {
             $error = $result['error'];
@@ -125,6 +148,23 @@ include 'components/header.php';
             </div>
 
             <div class="form-group">
+                <label class="form-label">Photo de profil</label>
+                <div class="profile-image-upload">
+                    <div class="image-preview-container" id="imagePreviewContainer">
+                        <div class="image-preview-placeholder" id="imagePreviewPlaceholder">
+                            <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>Cliquez pour ajouter une photo</span>
+                        </div>
+                        <img id="imagePreview" class="image-preview" src="" alt="Aperçu" style="display: none;">
+                    </div>
+                    <input type="file" id="profile_image" name="profile_image" class="profile-image-input" accept="image/*" onchange="previewProfileImage(this)">
+                </div>
+                <p class="text-sm text-gray-500 mt-1">Formats: JPG, PNG, GIF, WebP (max 2MB)</p>
+            </div>
+
+            <div class="form-group">
                 <label class="form-label" for="password">Mot de passe <span class="text-red-500">*</span></label>
                 <div class="relative">
                     <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
@@ -175,6 +215,28 @@ function togglePassword(inputId, btnId) {
         input.type = 'password';
     }
 }
+
+function previewProfileImage(input) {
+    const preview = document.getElementById('imagePreview');
+    const placeholder = document.getElementById('imagePreviewPlaceholder');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// Make image preview clickable
+document.getElementById('imagePreviewContainer').addEventListener('click', function() {
+    document.getElementById('profile_image').click();
+});
 </script>
 
 <?php include 'components/footer.php'; ?>

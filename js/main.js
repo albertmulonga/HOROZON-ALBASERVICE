@@ -177,28 +177,66 @@ function previewProfileImage(input) {
     }
 }
 
-// Get user GPS location
+// Get user GPS location - automatically fill latitude/longitude fields
 function getUserLocation() {
-    const latInput = document.getElementById('latitude');
-    const lngInput = document.getElementById('longitude');
+    // Try different ID combinations for checkout page
+    let latInput = document.getElementById('customer_latitude') || document.getElementById('latitude');
+    let lngInput = document.getElementById('customer_longitude') || document.getElementById('longitude');
     
+    // If inputs found, try to get location automatically
     if (latInput && lngInput && navigator.geolocation) {
+        // Show loading message
+        const gpsButton = document.querySelector('button[onclick*="getUserLocation"]');
+        if (gpsButton) {
+            gpsButton.innerHTML = '📍 Obtention de la position...';
+            gpsButton.disabled = true;
+        }
+        
         navigator.geolocation.getCurrentPosition(
             function(position) {
                 latInput.value = position.coords.latitude;
                 lngInput.value = position.coords.longitude;
                 console.log('GPS coordinates captured: ' + position.coords.latitude + ', ' + position.coords.longitude);
+                
+                // Update button to show success
+                if (gpsButton) {
+                    gpsButton.innerHTML = '✅ Position obtenue!';
+                    gpsButton.classList.add('bg-green-500', 'hover:bg-green-600');
+                    setTimeout(() => {
+                        gpsButton.innerHTML = '📍 Position actuelle';
+                        gpsButton.disabled = false;
+                    }, 3000);
+                }
             },
             function(error) {
                 console.log('GPS error: ' + error.message);
+                if (gpsButton) {
+                    gpsButton.innerHTML = '📍 Réessayer';
+                    gpsButton.disabled = false;
+                }
             },
             { enableHighAccuracy: true, timeout: 10000 }
         );
     }
 }
 
-// Initialize on page load
+// Auto-get location on page load for checkout
 document.addEventListener('DOMContentLoaded', function() {
+    // Update cart count on every page
+    updateCartCount();
+    
+    // Generate captcha if on login page
+    const captchaQuestion = document.getElementById('captchaQuestion');
+    if (captchaQuestion) {
+        generateCaptcha();
+    }
+    
+    // Check if we're on checkout page and auto-get location
+    if (document.getElementById('customer_latitude') && document.getElementById('customer_longitude')) {
+        // Small delay to ensure page is fully loaded
+        setTimeout(getUserLocation, 1000);
+    }
+});
     // Update cart count on every page
     updateCartCount();
     
