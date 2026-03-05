@@ -14,6 +14,9 @@ export async function registerUser(formData: FormData) {
   const phone = formData.get("phone") as string;
   const password = formData.get("password") as string;
   const role = (formData.get("role") as string) || "client";
+  const address = formData.get("address") as string;
+  const city = formData.get("city") as string;
+  const profileImage = formData.get("profileImage") as string;
 
   if (!name || !email || !password) {
     return { error: "Veuillez remplir tous les champs obligatoires" };
@@ -21,7 +24,7 @@ export async function registerUser(formData: FormData) {
 
   // Check if email already exists
   const existingUser = await db.query.users.findFirst({
-    where: eq(users.email, email),
+    where: eq(users.email, email.toLowerCase()),
   });
 
   if (existingUser) {
@@ -32,10 +35,13 @@ export async function registerUser(formData: FormData) {
 
   const [newUser] = await db.insert(users).values({
     name,
-    email,
+    email: email.toLowerCase(),
     phone: phone || null,
     password: passwordHash,
     role: role as "client" | "admin" | "livreur",
+    address: address || null,
+    city: city || null,
+    profileImage: profileImage || null,
   }).returning();
 
   await createSession(newUser.id);
