@@ -277,8 +277,8 @@ ul {
 .bg-white { background-color: white; }
 .bg-gray-50 { background-color: var(--gray-100); }
 .bg-gray-100 { background-color: var(--gray-100); }
-.bg-gray-200 { background-color: var(--gray.bg-blue-200); }
--50 { background-color: #eff6ff; }
+.bg-gray-200 { background-color: var(--gray-200); }
+.bg-blue-50 { background-color: #eff6ff; }
 .bg-blue-500 { background-color: var(--primary-light); }
 .bg-blue-600 { background-color: var(--primary); }
 .bg-blue-700 { background-color: var(--primary-dark); }
