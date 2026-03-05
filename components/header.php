@@ -15,7 +15,7 @@ if (isset($_SESSION['cart'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $pageTitle ?? 'HOROZON ALBASERVICE' ?></title>
+    <title><?= $pageTitle ?? 'HIRIZON DE KINDU' ?></title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/favicon.ico">
     <script src="/js/main.js" defer></script>
@@ -26,8 +26,8 @@ if (isset($_SESSION['cart'])) {
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <!-- Logo -->
                 <a href="/" class="header-logo">
-                    <div class="header-logo-icon">H</div>
-                    <span class="header-logo-text hidden md:block">HOROZON</span>
+                    <div class="header-logo-icon">HK</div>
+                    <span class="header-logo-text hidden md:block">HIRIZON DE KINDU</span>
                 </a>
 
                 <!-- Navigation -->
@@ -35,6 +35,7 @@ if (isset($_SESSION['cart'])) {
                     <a href="/" class="header-nav-link <?= $_SERVER['REQUEST_URI'] === '/' ? 'active' : '' ?>">Accueil</a>
                     <a href="/produits.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/produits') !== false ? 'active' : '' ?>">Produits</a>
                     <a href="/categories.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/categories') !== false ? 'active' : '' ?>">Catégories</a>
+                    <a href="/promotions.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/promotions') !== false ? 'active' : '' ?>">Promotions</a>
                     <a href="/contact.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/contact') !== false ? 'active' : '' ?>">Contact</a>
                 </nav>
 
@@ -70,6 +71,8 @@ if (isset($_SESSION['cart'])) {
                                     <a href="/admin/index.php" class="dropdown-item">Tableau de bord Admin</a>
                                     <a href="/admin/produits.php" class="dropdown-item">Gérer les produits</a>
                                     <a href="/admin/utilisateurs.php" class="dropdown-item">Gérer les utilisateurs</a>
+                                    <a href="/admin/commandes.php" class="dropdown-item">Gérer les commandes</a>
+                                    <a href="/admin/livreurs.php" class="dropdown-item">Gérer les livreurs</a>
                                 <?php elseif ($user['role'] === 'livreur'): ?>
                                     <a href="/livreur/index.php" class="dropdown-item">Tableau de bord Livreur</a>
                                 <?php else: ?>

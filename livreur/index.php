@@ -2,7 +2,7 @@
 require_once '../config/db.php';
 require_once '../config/functions.php';
 
-$pageTitle = 'Tableau de bord Livreur';
+$pageTitle = 'Tableau de bord Livreur - HIRIZON DE KINDU';
 
 // Require livreur role
 $user = requireRole(['livreur']);
@@ -42,6 +42,7 @@ $completedOrders = array_filter($orders, function($o) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?></title>
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry" defer></script>
 </head>
 <body>
     <!-- Header -->
@@ -50,8 +51,8 @@ $completedOrders = array_filter($orders, function($o) {
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <div class="flex items-center gap-4">
                     <a href="/" class="flex items-center gap-2">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">H</div>
-                        <span class="text-xl font-bold text-gray-900">HOROZON</span>
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">HK</div>
+                        <span class="text-xl font-bold text-gray-900">HIRIZON DE KINDU</span>
                     </a>
                 </div>
                 
@@ -62,7 +63,10 @@ $completedOrders = array_filter($orders, function($o) {
                 </nav>
                 
                 <div class="flex items-center gap-3">
-                    <span class="text-sm text-gray-600"><?= htmlspecialchars($user['name']) ?></span>
+                    <div id="gpsStatus" class="flex items-center gap-2 text-sm text-gray-600">
+                        <span id="gpsDot" class="w-2 h-2 rounded-full bg-gray-400"></span>
+                        <span id="gpsText">GPS inactif</span>
+                    </div>
                     <div class="dropdown">
                         <button onclick="toggleDropdown()" class="flex items-center gap-2 cursor-pointer">
                             <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-semibold">
@@ -90,7 +94,7 @@ $completedOrders = array_filter($orders, function($o) {
             <div class="container py-6">
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
-                        <h1 class="text-3xl font-bold" style="background: linear-gradientea580c,(to right, # #c2410c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <h1 class="text-3xl font-bold" style="background: linear-gradient(to right, #ea580c, #c2410c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                             Tableau de bord Livreur
                         </h1>
                         <p class="text-gray-600 mt-1">Bienvenue, <span class="font-semibold text-orange-600"><?= htmlspecialchars($user['name']) ?></span></p>
@@ -152,6 +156,10 @@ $completedOrders = array_filter($orders, function($o) {
                 </div>
                 <div class="divide-y divide-gray-200">
                     <?php foreach ($activeOrders as $order): ?>
+                        <?php 
+                        // Get order details with customer location
+                        $orderDetails = getOrderById($order['id']);
+                        ?>
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <div>
@@ -169,21 +177,30 @@ $completedOrders = array_filter($orders, function($o) {
                                 <p class="font-medium"><?= htmlspecialchars($order['customer_name']) ?></p>
                                 <p class="text-sm text-gray-600"><?= htmlspecialchars($order['customer_phone']) ?></p>
                                 <p class="text-sm text-gray-600"><?= htmlspecialchars($order['customer_address']) ?>, <?= htmlspecialchars($order['customer_city']) ?></p>
+                                <?php if ($order['customer_latitude'] && $order['customer_longitude']): ?>
+                                    <p class="text-sm text-green-600 mt-2">📍 Localisation disponible</p>
+                                <?php endif; ?>
                             </div>
-                            <div class="flex gap-2">
+                            <div class="flex flex-wrap gap-2">
                                 <?php if ($order['status'] === 'paye' || $order['status'] === 'en_preparation'): ?>
-                                    <form method="POST" action="/api/orders/update_status.php">
+                                    <form method="POST" action="/api/orders/update_status/index.php">
                                         <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
                                         <input type="hidden" name="status" value="en_livraison">
                                         <button type="submit" class="btn btn-primary btn-sm">Commencer la livraison</button>
                                     </form>
                                 <?php elseif ($order['status'] === 'en_livraison'): ?>
-                                    <form method="POST" action="/api/orders/update_status.php">
+                                    <?php if ($order['customer_latitude'] && $order['customer_longitude']): ?>
+                                        <button onclick="showRoute(<?= $order['customer_latitude'] ?>, <?= $order['customer_longitude'] ?>, '<?= addslashes($order['customer_address']) ?>')" class="btn btn-secondary btn-sm">
+                                            📍 Voir l'itinéraire
+                                        </button>
+                                    <?php endif; ?>
+                                    <form method="POST" action="/api/orders/update_status/index.php">
                                         <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
                                         <input type="hidden" name="status" value="livre">
                                         <button type="submit" class="btn btn-success btn-sm">Marquer comme livré</button>
                                     </form>
                                 <?php endif; ?>
+                                <a href="tel:<?= htmlspecialchars($order['customer_phone']) ?>" class="btn btn-secondary btn-sm">📞 Appeler</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -236,6 +253,215 @@ $completedOrders = array_filter($orders, function($o) {
         </div>
     </main>
 
+    <!-- Map Modal -->
+    <div id="mapModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 900px; width: 95%;">
+            <div class="modal-header">
+                <h3>Itinéraire vers le client</h3>
+                <button onclick="closeMapModal()" class="text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="routeMap" style="height: 500px; width: 100%; border-radius: 8px;"></div>
+                <div id="routeInfo" class="mt-4 text-center">
+                    <p class="text-lg font-semibold">Calcul de l'itinéraire...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/js/main.js"></script>
+    <script>
+        let map;
+        let directionsRenderer;
+        let directionsService;
+        let watchId;
+        let currentOrderId = null;
+
+        // Start GPS tracking when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            startGPSTracking();
+        });
+
+        function startGPSTracking() {
+            if (!navigator.geolocation) {
+                updateGPSStatus(false, 'GPS non supporté');
+                return;
+            }
+
+            updateGPSStatus(true, 'Initialisation...');
+
+            // Get initial position
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    updateGPSStatus(true, 'Actif');
+                    sendLocation(position.coords);
+                },
+                function(error) {
+                    updateGPSStatus(false, 'Permission refusée');
+                },
+                { enableHighAccuracy: true }
+            );
+
+            // Watch position continuously
+            watchId = navigator.geolocation.watchPosition(
+                function(position) {
+                    updateGPSStatus(true, 'Actif');
+                    sendLocation(position.coords);
+                },
+                function(error) {
+                    console.error('GPS Error:', error);
+                },
+                { 
+                    enableHighAccuracy: true,
+                    maximumAge: 10000,
+                    timeout: 5000
+                }
+            );
+        }
+
+        function updateGPSStatus(active, text) {
+            const dot = document.getElementById('gpsDot');
+            const statusText = document.getElementById('gpsText');
+            
+            if (active) {
+                dot.className = 'w-2 h-2 rounded-full bg-green-500 animate-pulse';
+            } else {
+                dot.className = 'w-2 h-2 rounded-full bg-red-500';
+            }
+            statusText.textContent = text;
+        }
+
+        function sendLocation(coords) {
+            // Find the active order to send location
+            const activeOrders = document.querySelectorAll('[data-order-id]');
+            if (activeOrders.length === 0) return;
+
+            // Get the first active order ID
+            fetch('/api/orders/update_location/index.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    order_id: currentOrderId || 1, // Default to first order if no specific order
+                    latitude: coords.latitude,
+                    longitude: coords.longitude,
+                    accuracy: coords.accuracy,
+                    speed: coords.speed,
+                    heading: coords.heading
+                })
+            }).catch(error => console.error('Error sending location:', error));
+        }
+
+        function showRoute(destLat, destLng, destAddress) {
+            document.getElementById('mapModal').style.display = 'flex';
+            
+            if (!navigator.geolocation) {
+                alert('La géolocalisation n\'est pas supportée par votre navigateur');
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    initRouteMap(position.coords.latitude, position.coords.longitude, destLat, destLng, destAddress);
+                },
+                function(error) {
+                    // Use default location if GPS not available
+                    initRouteMap(-3.4667, 25.8667, destLat, destLng, destAddress);
+                }
+            );
+        }
+
+        function initRouteMap(startLat, startLng, destLat, destLng, destAddress) {
+            const mapDiv = document.getElementById('routeMap');
+            
+            if (!map) {
+                map = new google.maps.Map(mapDiv, {
+                    center: { lat: startLat, lng: startLng },
+                    zoom: 14
+                });
+
+                directionsService = new google.maps.DirectionsService();
+                directionsRenderer = new google.maps.DirectionsRenderer();
+                directionsRenderer.setMap(map);
+            }
+
+            const request = {
+                origin: { lat: startLat, lng: startLng },
+                destination: { lat: destLat, lng: destLng },
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+
+            directionsService.route(request, function(result, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(result);
+                    
+                    // Show distance and duration
+                    const leg = result.routes[0].legs[0];
+                    document.getElementById('routeInfo').innerHTML = `
+                        <p class="text-lg">
+                            <span class="font-semibold">Distance:</span> ${leg.distance.text} | 
+                            <span class="font-semibold">Temps estimé:</span> ${leg.duration.text}
+                        </p>
+                        <p class="text-sm text-gray-600">Adresse: ${destAddress}</p>
+                    `;
+                } else {
+                    // If no route found, just show markers
+                    map.setCenter({ lat: destLat, lng: destLng });
+                    
+                    new google.maps.Marker({
+                        position: { lat: startLat, lng: startLng },
+                        map: map,
+                        title: 'Votre position',
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            scale: 10,
+                            fillColor: '#22c55e',
+                            fillOpacity: 1,
+                            strokeColor: '#ffffff',
+                            strokeWeight: 2
+                        }
+                    });
+
+                    new google.maps.Marker({
+                        position: { lat: destLat, lng: destLng },
+                        map: map,
+                        title: 'Client: ' + destAddress,
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            scale: 12,
+                            fillColor: '#f97316',
+                            fillOpacity: 1,
+                            strokeColor: '#ffffff',
+                            strokeWeight: 3
+                        }
+                    });
+
+                    // Calculate straight line distance
+                    const distance = google.maps.geometry.spherical.computeDistanceBetween(
+                        new google.maps.LatLng(startLat, startLng),
+                        new google.maps.LatLng(destLat, destLng)
+                    ) / 1000;
+
+                    document.getElementById('routeInfo').innerHTML = `
+                        <p class="text-lg">
+                            <span class="font-semibold">Distance directe:</span> ${distance.toFixed(2)} km
+                        </p>
+                        <p class="text-sm text-gray-600">Adresse: ${destAddress}</p>
+                    `;
+                }
+            });
+        }
+
+        function closeMapModal() {
+            document.getElementById('mapModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('mapModal');
+            if (event.target === modal) {
+                closeMapModal();
+            }
+        }
+    </script>
 </body>
 </html>
