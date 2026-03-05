@@ -459,6 +459,15 @@ function getProductsCount() {
     return $result['count'];
 }
 
+// Obtenir les produits en faible stock
+function getLowStockProducts($limit = 5) {
+    $db = getDB();
+    $stmt = $db->prepare("SELECT * FROM products WHERE is_active = 1 AND stock_quantity <= 10 ORDER BY stock_quantity ASC LIMIT ?");
+    $stmt->execute([$limit]);
+    
+    return $stmt->fetchAll();
+}
+
 // Obtenir les paramètres du site
 function getSetting($key) {
     $db = getDB();

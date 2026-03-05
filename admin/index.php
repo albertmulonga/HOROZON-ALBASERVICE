@@ -17,6 +17,15 @@ $currentMonthRevenue = $stats['totalSales'];
 $previousMonthRevenue = $stats['totalSales'] * 0.75;
 $revenueChange = $previousMonthRevenue > 0 ? (($currentMonthRevenue - $previousMonthRevenue) / $previousMonthRevenue) * 100 : 0;
 
+// Calculate average order value
+$avgOrderValue = $stats['total'] > 0 ? $stats['totalSales'] / $stats['total'] : 0;
+
+// Calculate order change
+$orderChange = 12; // Simulated change
+
+// Low stock products
+$lowStockProducts = getLowStockProducts();
+
 $statusColors = [
     'en_attente' => 'bg-yellow-100 text-yellow-800 border-yellow-200',
     'paye' => 'bg-blue-100 text-blue-800 border-blue-200',
