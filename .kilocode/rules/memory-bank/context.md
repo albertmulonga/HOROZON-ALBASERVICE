@@ -28,6 +28,8 @@ La plateforme e-commerce HOROZON ALBASERVICE est une plateforme de vente en lign
 - [x] Design moderne de la page login avec vidéo de fond
 - [x] Ajout de la sélection de photo de profil lors de l'inscription
 - [x] Amélioration du design du bouton GPS et des champs de latitude/longitude
+- [x] Ajout page splash animation 18 secondes avec vetements flottants
+- [x] Redirection automatique index.php vers splash.php avec bouton "Passer l'animation"
 
 ## Current Structure (PHP)
 
@@ -37,7 +39,8 @@ La plateforme e-commerce HOROZON ALBASERVICE est une plateforme de vente en lign
 | `config/functions.php` | Fonctions utilitaires PHP |
 | `css/style.css` | Styles CSS complets |
 | `js/main.js` | JavaScript client |
-| `index.php` | Page d'accueil |
+| `index.php` | Page d'accueil (redirige vers splash) |
+| `splash.php` | Animation splash 18 secondes |
 | `promotions.php` | Page des promotions |
 | `login.php` | Page de connexion |
 | `register.php` | Page d'inscription |
