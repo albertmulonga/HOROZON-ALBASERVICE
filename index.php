@@ -9,32 +9,40 @@ $pageTitle = 'HOROZON ALBASERVICE - Votre boutique en ligne';
 $popularProducts = getPopularProducts();
 $categories = getCategories();
 
-// Services data
+// Check if user is logged in
+$isLoggedIn = isLoggedIn();
+$currentUser = getCurrentUser();
+
+// Services data with professional Google Material Icons
 $services = [
     [
         'name' => 'Chaussures',
         'description' => 'Chaussures de qualité pour hommes et femmes',
         'image' => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
-        'icon' => '👞'
+        'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18.5c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v3H2v-3zm2-4.5c0-.28.22-.5.5-.5h15c.28 0 .5.22.5.5v1.5H4v-1.5zm2-3.5c0-.28.22-.5.5-.5h13c.28 0 .5.22.5.5V8H6V6.5zm14.5-3c0-.83-.67-1.5-1.5-1.5H5c-.83 0-1.5.67-1.5 1.5v2h17V5z"/></svg>',
+        'color' => 'from-red-500 to-red-700'
     ],
     [
         'name' => 'Vêtements',
         'description' => 'Vêtements élégante et modernes',
         'image' => 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=400&fit=crop',
-        'icon' => '👔'
+        'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M21.6 18.2L13 11.75v-.91c1.65-.49 2.8-2.17 2.43-4.05-.26-1.31-1.3-2.4-2.61-2.7C10.54 3.57 8.5 5.3 8.5 7.5h2c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5c0 .84-.69 1.52-1.53 1.5-.54-.01-.97.45-.97.99v1.76L2.4 18.2c-.91.77-.99 2.11-.16 2.93l4.14 4.14c.57.58 1.56.58 2.14 0l5.08-5.08c.2-.2.47-.31.75-.31s.55.11.75.31l5.08 5.08c.58.58 1.57.58 2.14 0l4.14-4.14c.83-.82.75-2.16-.16-2.93z"/></svg>',
+        'color' => 'from-purple-500 to-purple-700'
     ],
     [
         'name' => 'Sacs',
         'description' => 'Sacs à main, sacs à dos et accessories',
         'image' => 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop',
-        'icon' => '👜'
+        'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg>',
+        'color' => 'from-amber-500 to-amber-700'
     ],
     [
         'name' => 'Accessoires',
         'description' => 'Montres, bijoux et autres accessories',
         'image' => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-        'icon' => '⌚'
-    ]
+        'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>',
+        'color' => 'from-teal-500 to-teal-700'
+    }
 ];
 
 include 'components/header.php';
@@ -69,12 +77,28 @@ include 'components/header.php';
                 Votre destination pour des produits de qualité à Kindu, Maniema, RDC
             </p>
             <div class="hero-buttons">
-                <a href="produits.php" class="btn btn-primary btn-lg">
-                    Découvrir nos produits
+                <a href="login.php" class="btn btn-primary btn-lg">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                    </svg>
+                    Se connecter
                 </a>
-                <a href="register.php" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.3); color: white;">
+                <a href="register.php" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.5); color: white; background: rgba(255,255,255,0.1);">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                    </svg>
                     Créer un compte
                 </a>
+            </div>
+            
+            <!-- Message important pour les clients -->
+            <div class="mt-8 bg-white/10 backdrop-blur-sm rounded-xl p-4 max-w-2xl mx-auto">
+                <p class="text-white text-center text-lg">
+                    <svg class="w-6 h-6 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <strong>Important:</strong> Créez votre compte pour passer votre commande et suivre votre livraison en temps réel!
+                </p>
             </div>
         </div>
     </div>
@@ -93,10 +117,10 @@ include 'components/header.php';
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <?php foreach ($services as $service): ?>
                 <a href="produits.php" class="block">
-                    <div class="product-card">
+                    <div class="product-card service-card">
                         <div class="relative">
                             <img src="<?= $service['image'] ?>" alt="<?= $service['name'] ?>" class="product-card-image" style="height: 200px; object-fit: cover;">
-                            <div class="absolute top-4 left-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center text-2xl">
+                            <div class="absolute top-4 left-4 w-14 h-14 bg-gradient-to-r <?= $service['color'] ?> rounded-xl flex items-center justify-center text-white shadow-lg service-icon">
                                 <?= $service['icon'] ?>
                             </div>
                         </div>
@@ -201,18 +225,20 @@ include 'components/header.php';
     </div>
 </section>
 
-<!-- CTA Section -->
+<!-- CTA Section - Only show for logged in users -->
+<?php if ($isLoggedIn): ?>
 <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800">
     <div class="container text-center">
         <h2 class="text-3xl font-bold text-white mb-4">Prêt à Commander?</h2>
         <p class="text-blue-100 mb-8 max-w-2xl mx-auto">
-            milliers de clients satisf Rejoignez desaits et passez votre première commande dès maintenant
+            Rejoignez des milliers de clients satisfaits et passez votre première commande dès maintenant
         </p>
         <a href="produits.php" class="btn btn-white btn-lg" style="background: white; color: var(--primary);">
             Commander maintenant
         </a>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- Localisation Map Section -->
 <section class="py-16 bg-gray-50">

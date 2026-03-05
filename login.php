@@ -42,8 +42,8 @@ include 'components/header.php';
         <div class="auth-visual-bg"></div>
         <div class="auth-visual-content">
             <div class="text-center mb-8">
-                <div class="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <svg class="w-14 h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm login-icon-container">
+                    <svg class="w-14 h-14 text-white login-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                     </svg>
                 </div>
@@ -52,8 +52,8 @@ include 'components/header.php';
             </div>
             
             <div class="grid grid-cols-2 gap-6 mt-8">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                    <svg class="w-8 h-8 mx-auto mb-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 feature-card">
+                    <svg class="w-8 h-8 mx-auto mb-2 text-white feature-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
                     </svg>
                     <p class="text-center text-white font-medium">Produits de qualité</p>

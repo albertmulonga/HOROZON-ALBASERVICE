@@ -329,7 +329,7 @@ function getUsersByRole($role) {
 }
 
 // Créer un utilisateur par l'admin
-function createUserByAdmin($name, $email, $phone, $password, $role, $address = null, $city = null) {
+function createUserByAdmin($name, $email, $phone, $password, $role, $address = null, $city = null, $profileImage = null) {
     $db = getDB();
     
     // Vérifier si l'email existe déjà
@@ -342,11 +342,33 @@ function createUserByAdmin($name, $email, $phone, $password, $role, $address = n
     
     $passwordHash = hashPassword($password);
     
-    $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role, address, city) 
-                          VALUES (?, ?, ?, ?, ?, ?, ?)");
+    // Gérer la photo de profil si elle est fournie
+    $profileImagePath = null;
+    if ($profileImage && isset($profileImage['tmp_name']) && $profileImage['error'] === UPLOAD_ERR_OK) {
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+        $maxSize = 2 * 1024 * 1024; // 2MB
+        
+        if (in_array($profileImage['type'], $allowedTypes) && $profileImage['size'] <= $maxSize) {
+            $uploadDir = 'uploads/profile/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            
+            $extension = pathinfo($profileImage['name'], PATHINFO_EXTENSION);
+            $filename = 'profile_' . time() . '_' . uniqid() . '.' . $extension;
+            $destination = $uploadDir . $filename;
+            
+            if (move_uploaded_file($profileImage['tmp_name'], $destination)) {
+                $profileImagePath = $destination;
+            }
+        }
+    }
+    
+    $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role, address, city, profile_image) 
+                          VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
     
     try {
-        $stmt->execute([$name, strtolower($email), $phone, $passwordHash, $role, $address, $city]);
+        $stmt->execute([$name, strtolower($email), $phone, $passwordHash, $role, $address, $city, $profileImagePath]);
         
         return ['success' => true];
     } catch (Exception $e) {
@@ -409,6 +431,89 @@ function deleteUser($userId) {
     } catch (Exception $e) {
         return ['error' => 'Erreur lors de la suppression'];
     }
+}
+
+// Mettre à jour le profil utilisateur
+function updateUserProfile($userId, $name, $email, $phone = null, $address = null, $city = null) {
+    $db = getDB();
+    
+    // Vérifier si l'email est déjà utilisé par un autre utilisateur
+    $stmt = $db->prepare("SELECT id FROM users WHERE LOWER(email) = LOWER(?) AND id != ?");
+    $stmt->execute([$email, $userId]);
+    
+    if ($stmt->rowCount() > 0) {
+        return ['error' => 'Cet email est déjà utilisé par un autre utilisateur'];
+    }
+    
+    $stmt = $db->prepare("UPDATE users SET name = ?, email = ?, phone = ?, address = ?, city = ? WHERE id = ?");
+    
+    try {
+        $stmt->execute([$name, strtolower($email), $phone, $address, $city, $userId]);
+        return ['success' => true];
+    } catch (Exception $e) {
+        return ['error' => 'Erreur lors de la mise à jour du profil'];
+    }
+}
+
+// Mettre à jour le mot de passe utilisateur
+function updateUserPassword($userId, $currentPassword, $newPassword) {
+    $db = getDB();
+    
+    // Vérifier le mot de passe actuel
+    $stmt = $db->prepare("SELECT password FROM users WHERE id = ?");
+    $stmt->execute([$userId]);
+    $user = $stmt->fetch();
+    
+    if (!verifyPassword($currentPassword, $user['password'])) {
+        return ['error' => 'Le mot de passe actuel est incorrect'];
+    }
+    
+    $newHash = hashPassword($newPassword);
+    $stmt = $db->prepare("UPDATE users SET password = ? WHERE id = ?");
+    
+    try {
+        $stmt->execute([$newHash, $userId]);
+        return ['success' => true];
+    } catch (Exception $e) {
+        return ['error' => 'Erreur lors de la mise à jour du mot de passe'];
+    }
+}
+
+// Mettre à jour la photo de profil
+function updateUserPhoto($userId, $file) {
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    $maxSize = 2 * 1024 * 1024; // 2MB
+    
+    if (!in_array($file['type'], $allowedTypes)) {
+        return ['error' => 'Type de fichier non autorisé. Utilisez JPG, PNG ou GIF'];
+    }
+    
+    if ($file['size'] > $maxSize) {
+        return ['error' => 'La taille du fichier ne doit pas dépasser 2MB'];
+    }
+    
+    $uploadDir = 'uploads/profile/';
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+    
+    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $filename = 'profile_' . $userId . '_' . time() . '.' . $extension;
+    $destination = $uploadDir . $filename;
+    
+    if (move_uploaded_file($file['tmp_name'], $destination)) {
+        $db = getDB();
+        $stmt = $db->prepare("UPDATE users SET profile_image = ? WHERE id = ?");
+        
+        try {
+            $stmt->execute([$destination, $userId]);
+            return ['success' => true];
+        } catch (Exception $e) {
+            return ['error' => 'Erreur lors de la mise à jour de la photo'];
+        }
+    }
+    
+    return ['error' => 'Erreur lors du téléchargement de l\'image'];
 }
 
 // Créer un produit

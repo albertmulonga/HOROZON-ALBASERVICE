@@ -21,12 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $role = $_POST['role'] ?? 'client';
             $address = $_POST['address'] ?? '';
             $city = $_POST['city'] ?? '';
-            
-            if (empty($name) || empty($email) || empty($password)) {
-                $message = 'Veuillez remplir tous les champs obligatoires';
-                $messageType = 'error';
-            } else {
-                $result = createUserByAdmin($name, $email, $phone, $password, $role, $address, $city);
+                $profileImage = isset($_FILES['profile_image']) ? $_FILES['profile_image'] : null;
+                
+                if (empty($name) || empty($email) || empty($password)) {
+                    $message = 'Veuillez remplir tous les champs obligatoires';
+                    $messageType = 'error';
+                } else {
+                    $result = createUserByAdmin($name, $email, $phone, $password, $role, $address, $city, $profileImage);
                 if (isset($result['success'])) {
                     $message = 'Utilisateur créé avec succès';
                     $messageType = 'success';
@@ -215,9 +216,28 @@ $users = getAllUsers();
                     </svg>
                 </button>
             </div>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" name="action" value="add">
+                    
+                    <!-- Photo de profil -->
+                    <div class="form-group">
+                        <label class="form-label">Photo de profil</label>
+                        <div class="flex items-center gap-4">
+                            <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                                <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <label class="btn btn-secondary btn-sm cursor-pointer">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                                Choisir une photo
+                                <input type="file" name="profile_image" accept="image/*" class="hidden" onchange="previewImage(this, 'previewProfileImage')">
+                            </label>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <label class="form-label">Nom complet *</label>
