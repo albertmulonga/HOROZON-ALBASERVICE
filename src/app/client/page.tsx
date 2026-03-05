@@ -109,13 +109,13 @@ export default async function ClientDashboard({
                       </span>
                     </div>
                     <p className="text-gray-600">
-                      {new Date(order.createdAt).toLocaleDateString("fr-FR", {
+                      {order.createdAt ? new Date(order.createdAt).toLocaleDateString("fr-FR", {
                         day: "numeric",
                         month: "long",
                         year: "numeric",
                         hour: "2-digit",
                         minute: "2-digit",
-                      })}
+                      }) : "Date non disponible"}
                     </p>
                     <p className="text-gray-600 mt-1">
                       {order.customerAddress}, {order.customerCity}

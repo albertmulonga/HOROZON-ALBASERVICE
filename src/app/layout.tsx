@@ -19,10 +19,19 @@ export default async function RootLayout({
 }>) {
   const user = await getUser();
 
+  // Transform null to undefined for type compatibility
+  const headerUser = user ? {
+    ...user,
+    phone: user.phone ?? undefined,
+    profileImage: user.profileImage ?? undefined,
+    address: user.address ?? undefined,
+    city: user.city ?? undefined,
+  } : null;
+
   return (
     <html lang="fr">
       <body className={inter.className}>
-        <Header user={user} />
+        <Header user={headerUser} />
         <main className="min-h-screen bg-gray-50">
           {children}
         </main>
