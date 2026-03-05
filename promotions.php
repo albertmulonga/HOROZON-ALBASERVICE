@@ -5,7 +5,7 @@ require_once 'config/functions.php';
 // Initialize database
 initDatabase();
 
-$pageTitle = 'Promotions - HOROZON ALBASERVICE';
+$pageTitle = 'Promotions - HORIZON ALBASERVICE';
 
 // Get promotions products
 $db = getDB();

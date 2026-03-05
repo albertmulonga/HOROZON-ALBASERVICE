@@ -2,7 +2,7 @@
 /**
  * Pied de page du site
  */
-$shopName = getSetting('shop_name') ?? 'HOROZON ALBASERVICE';
+$shopName = getSetting('shop_name') ?? 'HORIZON ALBASERVICE';
 $shopAddress = getSetting('shop_address') ?? 'Kindu, Congo';
 ?>
 

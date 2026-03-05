@@ -2,7 +2,7 @@
 require_once '../config/db.php';
 require_once '../config/functions.php';
 
-$pageTitle = 'Mes Commandes - HOROZON ALBASERVICE';
+$pageTitle = 'Mes Commandes - HORIZON ALBASERVICE';
 
 // Require client role
 $user = requireRole(['client']);
@@ -73,7 +73,7 @@ $statusColors = [
                 <div class="flex items-center gap-4">
                     <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">HK</div>
-                        <span class="text-xl font-bold text-gray-900">HOROZON ALBASERVICE</span>
+                        <span class="text-xl font-bold text-gray-900">HORIZON ALBASERVICE</span>
                     </a>
                 </div>
                 

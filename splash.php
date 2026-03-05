@@ -12,7 +12,7 @@ $splashDuration = 18;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOROZON ALBASERVICE - Chargement...</title>
+    <title>HORIZON ALBASERVICE - Chargement...</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
         * {
@@ -376,7 +376,7 @@ $splashDuration = 18;
         </div>
         
         <!-- Titre -->
-        <h1 class="splash-title">HOROZON <span>ALBASERVICE</span></h1>
+        <h1 class="splash-title">HORIZON <span>ALBASERVICE</span></h1>
         <p class="splash-subtitle">Votre boutique en ligne de confiance à Kindu, Maniema</p>
         
         <!-- Publicités -->

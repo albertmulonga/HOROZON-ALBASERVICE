@@ -12,7 +12,7 @@ require_once 'config/functions.php';
 // Initialize database
 initDatabase();
 
-$pageTitle = 'HOROZON ALBASERVICE - Votre boutique en ligne';
+$pageTitle = 'HORIZON ALBASERVICE - Votre boutique en ligne';
 $popularProducts = getPopularProducts();
 $categories = getCategories();
 
@@ -79,7 +79,7 @@ include 'components/header.php';
                 </div>
             </div>
             
-            <h1 class="hero-title">HOROZON ALBASERVICE</h1>
+            <h1 class="hero-title">HORIZON ALBASERVICE</h1>
             <p class="hero-subtitle">
                 Votre destination pour des produits de qualité à Kindu, Maniema, RDC
             </p>
@@ -267,7 +267,7 @@ include 'components/header.php';
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-gray-900">HOROZON ALBASERVICE</h3>
+                        <h3 class="text-xl font-bold text-gray-900">HORIZON ALBASERVICE</h3>
                         <p class="text-gray-600">Votre boutique de confiance</p>
                     </div>
                 </div>

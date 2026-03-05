@@ -214,7 +214,7 @@ function insertDefaultData($db) {
     if ($stmt->rowCount() == 0) {
         $stmt = $db->prepare("INSERT INTO settings (setting_key, setting_value) VALUES (?, ?)");
         $stmt->execute(['payment_phone', '+243 000 000 000']);
-        $stmt->execute(['shop_name', 'HOROZON ALBASERVICE']);
+        $stmt->execute(['shop_name', 'HORIZON ALBASERVICE']);
         $stmt->execute(['shop_address', 'Kindu, Congo']);
     }
 }

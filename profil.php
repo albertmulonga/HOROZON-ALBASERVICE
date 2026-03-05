@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 require_once 'config/functions.php';
 
-$pageTitle = 'Mon Profil - HOROZON ALBASERVICE';
+$pageTitle = 'Mon Profil - HORIZON ALBASERVICE';
 
 // Require login
 $user = requireRole(['client', 'admin', 'livreur']);

@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 require_once 'config/functions.php';
 
-$pageTitle = 'Checkout - HOROZON ALBASERVICE';
+$pageTitle = 'Checkout - HORIZON ALBASERVICE';
 
 // Require login for checkout
 if (!isLoggedIn()) {

@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 require_once 'config/functions.php';
 
-$pageTitle = 'Panier - HOROZON ALBASERVICE';
+$pageTitle = 'Panier - HORIZON ALBASERVICE';
 
 include 'components/header.php';
 ?>

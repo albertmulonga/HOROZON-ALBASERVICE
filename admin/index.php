@@ -2,7 +2,7 @@
 require_once '../config/db.php';
 require_once '../config/functions.php';
 
-$pageTitle = 'Tableau de bord Admin - HOROZON ALBASERVICE';
+$pageTitle = 'Tableau de bord Admin - HORIZON ALBASERVICE';
 
 // Require admin role
 $user = requireRole(['admin']);
@@ -61,7 +61,7 @@ $statusLabels = [
                 <div class="flex items-center gap-4">
                     <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">H</div>
-                        <span class="text-xl font-bold text-gray-900">HOROZON</span>
+                        <span class="text-xl font-bold text-gray-900">HORIZON</span>
                     </a>
                 </div>
                 

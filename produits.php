@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 require_once 'config/functions.php';
 
-$pageTitle = 'Produits - HOROZON ALBASERVICE';
+$pageTitle = 'Produits - HORIZON ALBASERVICE';
 
 // Initialize database
 initDatabase();

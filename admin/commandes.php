@@ -2,7 +2,7 @@
 require_once '../config/db.php';
 require_once '../config/functions.php';
 
-$pageTitle = 'Gestion des Commandes - HOROZON ALBASERVICE';
+$pageTitle = 'Gestion des Commandes - HORIZON ALBASERVICE';
 
 // Require admin role
 $user = requireRole(['admin']);

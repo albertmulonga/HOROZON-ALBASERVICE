@@ -1,5 +1,5 @@
 -- =====================================================
--- BASE DE DONNÉES HOROZON ALBASERVICE
+-- BASE DE DONNÉES HORIZON ALBASERVICE
 -- Pour XAMPP - Importer ce fichier dans phpMyAdmin
 -- =====================================================
 
@@ -176,7 +176,7 @@ INSERT INTO products (name, description, price, original_price, image, category_
 -- =====================================================
 INSERT INTO settings (setting_key, setting_value) VALUES 
 ('payment_phone', '+243 000 000 000'),
-('shop_name', 'HOROZON ALBASERVICE'),
+('shop_name', 'HORIZON ALBASERVICE'),
 ('shop_address', 'Kindu, Congo');
 
 -- =====================================================

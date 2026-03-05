@@ -1,10 +1,10 @@
-# Active Context: E-commerce HOROZON ALBASERVICE (PHP + MySQL)
+# Active Context: E-commerce HORIZON ALBASERVICE (PHP + MySQL)
 
 ## Current State
 
 **Project Status**: ✅ Plateforme e-commerce complète opérationnelle
 
-La plateforme e-commerce HOROZON ALBASERVICE est une plateforme de vente en ligne complète avec suivi GPS.
+La plateforme e-commerce HORIZON ALBASERVICE est une plateforme de vente en ligne complète avec suivi GPS.
 
 ## Recently Completed
 

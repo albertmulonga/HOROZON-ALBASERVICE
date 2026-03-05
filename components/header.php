@@ -15,7 +15,7 @@ if (isset($_SESSION['cart'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $pageTitle ?? 'HOROZON ALBASERVICE' ?></title>
+    <title><?= $pageTitle ?? 'HORIZON ALBASERVICE' ?></title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="favicon.ico">
     <script src="js/main.js" defer></script>
@@ -29,7 +29,7 @@ if (isset($_SESSION['cart'])) {
                     <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center text-white font-bold text-xl border-4 border-white shadow-lg">
                         H
                     </div>
-                    <span class="header-logo-text hidden md:block">HOROZON ALBASERVICE</span>
+                    <span class="header-logo-text hidden md:block">HORIZON ALBASERVICE</span>
                 </a>
 
                 <!-- Navigation -->

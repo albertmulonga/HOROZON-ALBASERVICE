@@ -1,4 +1,4 @@
-// HOROZON ALBASERVICE - JavaScript
+// HORIZON ALBASERVICE - JavaScript
 
 // Toggle dropdown menu
 function toggleDropdown() {

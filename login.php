@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 require_once 'config/functions.php';
 
-$pageTitle = 'Connexion - HOROZON ALBASERVICE';
+$pageTitle = 'Connexion - HORIZON ALBASERVICE';
 $error = '';
 
 // Redirect if already logged in
@@ -45,7 +45,7 @@ include 'components/header.php';
                     <div class="logo-icon-modern">
                         H
                     </div>
-                    <span class="brand-name">HOROZON ALBASERVICE</span>
+                    <span class="brand-name">HORIZON ALBASERVICE</span>
                 </div>
                 
                 <h1 class="form-title">Bienvenue</h1>
@@ -114,7 +114,7 @@ include 'components/header.php';
                 <div class="brand-logo-showcase">
                     <span class="logo-text">H</span>
                 </div>
-                <h2 class="brand-title">HOROZON<br>ALBASERVICE</h2>
+                <h2 class="brand-title">HORIZON<br>ALBASERVICE</h2>
                 <p class="brand-tagline">Votre boutique de confiance</p>
             </div>
             

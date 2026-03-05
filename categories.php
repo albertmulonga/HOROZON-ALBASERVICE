@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 require_once 'config/functions.php';
 
-$pageTitle = 'Catégories - HOROZON ALBASERVICE';
+$pageTitle = 'Catégories - HORIZON ALBASERVICE';
 
 initDatabase();
 $categories = getCategories();

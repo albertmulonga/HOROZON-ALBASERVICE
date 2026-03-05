@@ -2,7 +2,7 @@
 require_once 'config/db.php';
 require_once 'config/functions.php';
 
-$pageTitle = 'Inscription - HOROZON ALBASERVICE';
+$pageTitle = 'Inscription - HORIZON ALBASERVICE';
 $error = '';
 $success = '';
 
@@ -78,7 +78,7 @@ include 'components/header.php';
                     </svg>
                 </div>
                 <h2 class="text-4xl font-bold mb-4">Créer un compte</h2>
-                <p class="text-xl text-blue-200">Rejoignez HOROZON ALBASERVICE</p>
+                <p class="text-xl text-blue-200">Rejoignez HORIZON ALBASERVICE</p>
             </div>
             
             <div class="grid grid-cols-2 gap-6 mt-8">
