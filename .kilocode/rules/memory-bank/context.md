@@ -1,10 +1,10 @@
-# Active Context: E-commerce HIRIZON DE KINDU (PHP + MySQL)
+# Active Context: E-commerce HOROZON ALBASERVICE (PHP + MySQL)
 
 ## Current State
 
-**Project Status**: ✅ Conversion complète vers PHP + MySQL terminée
+**Project Status**: ✅ Plateforme e-commerce complète opérationnelle
 
-La plateforme e-commerce HIRIZON DE KINDU est une plateforme de vente en ligne complète avec suivi GPS.
+La plateforme e-commerce HOROZON ALBASERVICE est une plateforme de vente en ligne complète avec suivi GPS.
 
 ## Recently Completed
 
@@ -16,12 +16,12 @@ La plateforme e-commerce HIRIZON DE KINDU est une plateforme de vente en ligne c
 - [x] Gestion admin: produits, utilisateurs
 - [x] Panier et checkout avec paiement Mobile Money
 - [x] API PHP pour les commandes
-- [x] Renommage en HIRIZON DE KINDU
 - [x] Page Promotions
 - [x] Gestion commandes admin avec validation paiement
 - [x] Gestion livreurs
 - [x] Suivi GPS en temps réel avec Google Maps
 - [x] API de géolocalisation
+- [x] Correction des chemins CSS/JS (retrait des slashs initiaux pour XAMPP)
 
 ## Current Structure (PHP)
 
