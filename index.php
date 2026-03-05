@@ -21,36 +21,36 @@ $isLoggedIn = isLoggedIn();
 $currentUser = getCurrentUser();
 
 // Services data with professional Google Material Icons
-$services = [
-    [
+$services = array(
+    array(
         'name' => 'Chaussures',
         'description' => 'Chaussures de qualité pour hommes et femmes',
         'image' => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
         'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M2 18.5c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v3H2v-3zm2-4.5c0-.28.22-.5.5-.5h15c.28 0 .5.22.5.5v1.5H4v-1.5zm2-3.5c0-.28.22-.5.5-.5h13c.28 0 .5.22.5.5V8H6V6.5zm14.5-3c0-.83-.67-1.5-1.5-1.5H5c-.83 0-1.5.67-1.5 1.5v2h17V5z"/></svg>',
         'color' => 'from-red-500 to-red-700'
-    ],
-    [
+    ),
+    array(
         'name' => 'Vêtements',
         'description' => 'Vêtements élégante et modernes',
         'image' => 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=400&fit=crop',
         'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M21.6 18.2L13 11.75v-.91c1.65-.49 2.8-2.17 2.43-4.05-.26-1.31-1.3-2.4-2.61-2.7C10.54 3.57 8.5 5.3 8.5 7.5h2c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5c0 .84-.69 1.52-1.53 1.5-.54-.01-.97.45-.97.99v1.76L2.4 18.2c-.91.77-.99 2.11-.16 2.93l4.14 4.14c.57.58 1.56.58 2.14 0l5.08-5.08c.2-.2.47-.31.75-.31s.55.11.75.31l5.08 5.08c.58.58 1.57.58 2.14 0l4.14-4.14c.83-.82.75-2.16-.16-2.93z"/></svg>',
         'color' => 'from-purple-500 to-purple-700'
-    ],
-    [
+    ),
+    array(
         'name' => 'Sacs',
         'description' => 'Sacs à main, sacs à dos et accessories',
         'image' => 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop',
         'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z"/></svg>',
         'color' => 'from-amber-500 to-amber-700'
-    ],
-    [
+    ),
+    array(
         'name' => 'Accessoires',
         'description' => 'Montres, bijoux et autres accessories',
         'image' => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
         'icon' => '<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>',
         'color' => 'from-teal-500 to-teal-700'
-    }
-];
+    )
+);
 
 include 'components/header.php';
 ?>
