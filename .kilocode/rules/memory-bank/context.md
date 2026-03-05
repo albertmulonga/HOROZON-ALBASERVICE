@@ -23,6 +23,11 @@ La plateforme e-commerce HOROZON ALBASERVICE est une plateforme de vente en lign
 - [x] API de géolocalisation
 - [x] Correction des chemins CSS/JS (retrait des slashs initiaux pour XAMPP)
 - [x] Ajout des classes CSS utilitaires manquantes (w-6, h-6, w-8, h-8, object-cover, etc.)
+- [x] Correction du hash du mot de passe admin dans database.sql (SHA256 au lieu de bcrypt)
+- [x] Géolocalisation GPS automatique au chargement de la page checkout
+- [x] Design moderne de la page login avec vidéo de fond
+- [x] Ajout de la sélection de photo de profil lors de l'inscription
+- [x] Amélioration du design du bouton GPS et des champs de latitude/longitude
 
 ## Current Structure (PHP)
 
