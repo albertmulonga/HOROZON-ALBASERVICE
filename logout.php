@@ -5,5 +5,5 @@
 require_once 'config/functions.php';
 
 destroySession();
-header('Location: /index.php');
+header('Location: index.php');
 exit;

@@ -159,7 +159,7 @@ include 'components/header.php';
 
             <p class="text-center mt-6 text-gray-600">
                 Déjà un compte? 
-                <a href="/login.php" class="text-blue-600 font-semibold hover:underline">Se connecter</a>
+                <a href="login.php" class="text-blue-600 font-semibold hover:underline">Se connecter</a>
             </p>
         </form>
     </div>

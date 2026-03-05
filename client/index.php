@@ -50,7 +50,7 @@ $statusIcons = [
     ="fr">
 <head<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Header -->
@@ -58,20 +58,20 @@ $statusIcons = [
         <div class="container">
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <div class="flex items-center gap-4">
-                    <a href="/" class="flex items-center gap-2">
+                    <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">H</div>
                         <span class="text-xl font-bold text-gray-900">HOROZON</span>
                     </a>
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="/" class="header-nav-link">Accueil</a>
-                    <a href="/produits.php" class="header-nav-link">Produits</a>
-                    <a href="/client/index.php" class="header-nav-link active">Mon compte</a>
+                    <a href="../index.php" class="header-nav-link">Accueil</a>
+                    <a href="../produits.php" class="header-nav-link">Produits</a>
+                    <a href="../index.php" class="header-nav-link active">Mon compte</a>
                 </nav>
                 
                 <div class="flex items-center gap-3">
-                    <a href="/produits.php" class="btn btn-primary btn-sm">Continuer mes achats</a>
+                    <a href="../produits.php" class="btn btn-primary btn-sm">Continuer mes achats</a>
                     <div class="dropdown">
                         <button onclick="toggleDropdown()" class="flex items-center gap-2 cursor-pointer">
                             <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
@@ -83,8 +83,8 @@ $statusIcons = [
                                 <p class="font-semibold"><?= htmlspecialchars($user['name']) ?></p>
                                 <p class="text-sm text-gray-500"><?= htmlspecialchars($user['email']) ?></p>
                             </div>
-                            <a href="/client/index.php" class="dropdown-item">Mon compte</a>
-                            <a href="/logout.php" class="dropdown-item text-red-600">Déconnexion</a>
+                            <a href="../index.php" class="dropdown-item">Mon compte</a>
+                            <a href="../logout.php" class="dropdown-item text-red-600">Déconnexion</a>
                         </div>
                     </div>
                 </div>
@@ -170,14 +170,14 @@ $statusIcons = [
                                 <div class="text-sm text-gray-600">
                                     <p>Livraison à: <?= htmlspecialchars($order['customer_address']) ?>, <?= htmlspecialchars($order['customer_city']) ?></p>
                                 </div>
-                                <a href="/client/commande.php?id=<?= $order['id'] ?>" class="btn btn-secondary btn-sm">Voir les détails</a>
+                                <a href="../commande.php?id=<?= $order['id'] ?>" class="btn btn-secondary btn-sm">Voir les détails</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
                     <?php if (count($orders) === 0): ?>
                         <div class="p-8 text-center">
                             <p class="text-gray-500 mb-4">Vous n'avez pas encore passé de commande</p>
-                            <a href="/produits.php" class="btn btn-primary">Découvrir nos produits</a>
+                            <a href="../produits.php" class="btn btn-primary">Découvrir nos produits</a>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -185,6 +185,6 @@ $statusIcons = [
         </div>
     </main>
 
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

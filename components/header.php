@@ -25,7 +25,7 @@ if (isset($_SESSION['cart'])) {
         <div class="container">
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <!-- Logo -->
-                <a href="/" class="header-logo">
+                <a href="index.php" class="header-logo">
                     <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center text-white font-bold text-xl border-4 border-white shadow-lg">
                         H
                     </div>
@@ -34,17 +34,17 @@ if (isset($_SESSION['cart'])) {
 
                 <!-- Navigation -->
                 <nav class="header-nav hidden md:flex">
-                    <a href="/" class="header-nav-link <?= $_SERVER['REQUEST_URI'] === '/' ? 'active' : '' ?>">Accueil</a>
-                    <a href="/produits.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/produits') !== false ? 'active' : '' ?>">Produits</a>
-                    <a href="/categories.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/categories') !== false ? 'active' : '' ?>">Catégories</a>
-                    <a href="/promotions.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/promotions') !== false ? 'active' : '' ?>">Promotions</a>
-                    <a href="/contact.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], '/contact') !== false ? 'active' : '' ?>">Contact</a>
+                    <a href="index.php" class="header-nav-link <?= $_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '/index.php' ? 'active' : '' ?>">Accueil</a>
+                    <a href="produits.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'produits') !== false ? 'active' : '' ?>">Produits</a>
+                    <a href="categories.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'categories') !== false ? 'active' : '' ?>">Catégories</a>
+                    <a href="promotions.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'promotions') !== false ? 'active' : '' ?>">Promotions</a>
+                    <a href="contact.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'contact') !== false ? 'active' : '' ?>">Contact</a>
                 </nav>
 
                 <!-- Actions -->
                 <div class="header-actions">
                     <!-- Cart -->
-                    <a href="/panier.php" class="header-cart">
+                    <a href="panier.php" class="header-cart">
                         <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
@@ -76,22 +76,22 @@ if (isset($_SESSION['cart'])) {
                                     <p class="text-sm text-gray-500"><?= htmlspecialchars($user['email']) ?></p>
                                 </div>
                                 <?php if ($user['role'] === 'admin'): ?>
-                                    <a href="/admin/index.php" class="dropdown-item">Tableau de bord Admin</a>
-                                    <a href="/admin/produits.php" class="dropdown-item">Gérer les produits</a>
-                                    <a href="/admin/utilisateurs.php" class="dropdown-item">Gérer les utilisateurs</a>
-                                    <a href="/admin/commandes.php" class="dropdown-item">Gérer les commandes</a>
-                                    <a href="/admin/livreurs.php" class="dropdown-item">Gérer les livreurs</a>
+                                    <a href="admin/index.php" class="dropdown-item">Tableau de bord Admin</a>
+                                    <a href="admin/produits.php" class="dropdown-item">Gérer les produits</a>
+                                    <a href="admin/utilisateurs.php" class="dropdown-item">Gérer les utilisateurs</a>
+                                    <a href="admin/commandes.php" class="dropdown-item">Gérer les commandes</a>
+                                    <a href="admin/livreurs.php" class="dropdown-item">Gérer les livreurs</a>
                                 <?php elseif ($user['role'] === 'livreur'): ?>
-                                    <a href="/livreur/index.php" class="dropdown-item">Tableau de bord Livreur</a>
+                                    <a href="livreur/index.php" class="dropdown-item">Tableau de bord Livreur</a>
                                 <?php else: ?>
-                                    <a href="/client/index.php" class="dropdown-item">Mon compte</a>
+                                    <a href="client/index.php" class="dropdown-item">Mon compte</a>
                                 <?php endif; ?>
                                 <div class="dropdown-divider"></div>
-                                <a href="/logout.php" class="dropdown-item text-red-600">Déconnexion</a>
+                                <a href="logout.php" class="dropdown-item text-red-600">Déconnexion</a>
                             </div>
                         </div>
                     <?php else: ?>
-                        <a href="/login.php" class="btn btn-primary btn-sm">Connexion</a>
+                        <a href="login.php" class="btn btn-primary btn-sm">Connexion</a>
                     <?php endif; ?>
                 </div>
             </div>

@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Header -->
@@ -61,18 +61,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container">
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <div class="flex items-center gap-4">
-                    <a href="/" class="flex items-center gap-2">
+                    <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">HK</div>
                         <span class="text-xl font-bold text-gray-900">HIRIZON</span>
                     </a>
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="/admin/index.php" class="header-nav-link">Dashboard</a>
-                    <a href="/admin/produits.php" class="header-nav-link">Produits</a>
-                    <a href="/admin/utilisateurs.php" class="header-nav-link">Utilisateurs</a>
-                    <a href="/admin/commandes.php" class="header-nav-link">Commandes</a>
-                    <a href="/admin/livreurs.php" class="header-nav-link active">Livreurs</a>
+                    <a href="../index.php" class="header-nav-link">Dashboard</a>
+                    <a href="../produits.php" class="header-nav-link">Produits</a>
+                    <a href="../utilisateurs.php" class="header-nav-link">Utilisateurs</a>
+                    <a href="../commandes.php" class="header-nav-link">Commandes</a>
+                    <a href="../livreurs.php" class="header-nav-link active">Livreurs</a>
                 </nav>
                 
                 <div class="flex items-center gap-3">
@@ -88,12 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <p class="font-semibold"><?= htmlspecialchars($user['name']) ?></p>
                                 <p class="text-sm text-gray-500"><?= htmlspecialchars($user['email']) ?></p>
                             </div>
-                            <a href="/admin/index.php" class="dropdown-item">Dashboard</a>
-                            <a href="/admin/produits.php" class="dropdown-item">Produits</a>
-                            <a href="/admin/utilisateurs.php" class="dropdown-item">Utilisateurs</a>
-                            <a href="/admin/commandes.php" class="dropdown-item">Commandes</a>
+                            <a href="../index.php" class="dropdown-item">Dashboard</a>
+                            <a href="../produits.php" class="dropdown-item">Produits</a>
+                            <a href="../utilisateurs.php" class="dropdown-item">Utilisateurs</a>
+                            <a href="../commandes.php" class="dropdown-item">Commandes</a>
                             <div class="dropdown-divider"></div>
-                            <a href="/logout.php" class="dropdown-item text-red-600">Déconnexion</a>
+                            <a href="../logout.php" class="dropdown-item text-red-600">Déconnexion</a>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             
                             <div class="flex gap-2">
-                                <a href="/admin/livreur_detail.php?id=<?= $livreur['id'] ?>" class="btn btn-secondary btn-sm flex-1">Voir détails</a>
+                                <a href="../livreur_detail.php?id=<?= $livreur['id'] ?>" class="btn btn-secondary btn-sm flex-1">Voir détails</a>
                                 <form method="POST" style="display: inline;">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="livreur_id" value="<?= $livreur['id'] ?>">
@@ -221,7 +221,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         function openModal() {
             document.getElementById('addModal').style.display = 'flex';

@@ -13,7 +13,7 @@ include 'components/header.php';
 <div class="container py-8">
     <!-- Breadcrumb -->
     <nav class="breadcrumb mb-6">
-        <a href="/" class="breadcrumb-item">Accueil</a>
+        <a href="index.php" class="breadcrumb-item">Accueil</a>
         <span class="breadcrumb-separator">/</span>
         <span class="text-gray-900 font-medium">Catégories</span>
     </nav>
@@ -27,7 +27,7 @@ include 'components/header.php';
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <?php foreach ($categories as $category): ?>
-            <a href="/produits.php?category=<?= $category['id'] ?>" class="block">
+            <a href="produits.php?category=<?= $category['id'] ?>" class="block">
                 <div class="product-card">
                     <div class="relative">
                         <img src="<?= $category['image'] ?? 'https://via.placeholder.com/400x300?text=' . urlencode($category['name']) ?>" 

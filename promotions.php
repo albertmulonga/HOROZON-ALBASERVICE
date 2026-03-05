@@ -88,7 +88,7 @@ include 'components/header.php';
                 </div>
                 <h3 class="text-xl font-semibold text-gray-900 mb-2">Aucune promotion disponible</h3>
                 <p class="text-gray-600 mb-6">Revenez plus tard pour découvrir nos offres</p>
-                <a href="/produits.php" class="btn btn-primary">Voir tous les produits</a>
+                <a href="produits.php" class="btn btn-primary">Voir tous les produits</a>
             </div>
         <?php endif; ?>
     </div>
@@ -101,7 +101,7 @@ include 'components/header.php';
         <p class="text-blue-100 mb-8 max-w-2xl mx-auto">
             N'hésitez pas à nous contacter pour toute demande d'information
         </p>
-        <a href="/contact.php" class="btn btn-white btn-lg" style="background: white; color: var(--primary);">
+        <a href="contact.php" class="btn btn-white btn-lg" style="background: white; color: var(--primary);">
             Nous contacter
         </a>
     </div>

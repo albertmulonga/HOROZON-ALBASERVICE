@@ -51,7 +51,7 @@ $statusLabels = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Header -->
@@ -59,16 +59,16 @@ $statusLabels = [
         <div class="container">
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <div class="flex items-center gap-4">
-                    <a href="/" class="flex items-center gap-2">
+                    <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">H</div>
                         <span class="text-xl font-bold text-gray-900">HOROZON</span>
                     </a>
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="/admin/index.php" class="header-nav-link active">Dashboard</a>
-                    <a href="/admin/produits.php" class="header-nav-link">Produits</a>
-                    <a href="/admin/utilisateurs.php" class="header-nav-link">Utilisateurs</a>
+                    <a href="../index.php" class="header-nav-link active">Dashboard</a>
+                    <a href="../produits.php" class="header-nav-link">Produits</a>
+                    <a href="../utilisateurs.php" class="header-nav-link">Utilisateurs</a>
                 </nav>
                 
                 <div class="flex items-center gap-3">
@@ -84,11 +84,11 @@ $statusLabels = [
                                 <p class="font-semibold"><?= htmlspecialchars($user['name']) ?></p>
                                 <p class="text-sm text-gray-500"><?= htmlspecialchars($user['email']) ?></p>
                             </div>
-                            <a href="/admin/index.php" class="dropdown-item">Dashboard</a>
-                            <a href="/admin/produits.php" class="dropdown-item">Produits</a>
-                            <a href="/admin/utilisateurs.php" class="dropdown-item">Utilisateurs</a>
+                            <a href="../index.php" class="dropdown-item">Dashboard</a>
+                            <a href="../produits.php" class="dropdown-item">Produits</a>
+                            <a href="../utilisateurs.php" class="dropdown-item">Utilisateurs</a>
                             <div class="dropdown-divider"></div>
-                            <a href="/logout.php" class="dropdown-item text-red-600">Déconnexion</a>
+                            <a href="../logout.php" class="dropdown-item text-red-600">Déconnexion</a>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ $statusLabels = [
                         <p class="text-gray-600 mt-1">Bienvenue, <span class="font-semibold text-blue-600"><?= htmlspecialchars($user['name']) ?></span></p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <a href="/admin/produits.php?action=add" class="btn btn-primary">
+                        <a href="../produits.php?action=add" class="btn btn-primary">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                             </svg>
@@ -206,7 +206,7 @@ $statusLabels = [
             <div class="card">
                 <div class="card-header flex items-center justify-between">
                     <h2 class="text-lg font-semibold">Commandes récentes</h2>
-                    <a href="/admin/commandes.php" class="text-blue-600 hover:underline text-sm">Voir tout</a>
+                    <a href="../commandes.php" class="text-blue-600 hover:underline text-sm">Voir tout</a>
                 </div>
                 <div class="table-container">
                     <table class="table">
@@ -233,7 +233,7 @@ $statusLabels = [
                                     </td>
                                     <td><?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></td>
                                     <td>
-                                        <a href="/admin/commande.php?id=<?= $order['id'] ?>" class="text-blue-600 hover:underline">Voir</a>
+                                        <a href="../commande.php?id=<?= $order['id'] ?>" class="text-blue-600 hover:underline">Voir</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -249,6 +249,6 @@ $statusLabels = [
         </div>
     </main>
 
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>

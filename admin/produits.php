@@ -77,7 +77,7 @@ $categories = getCategories();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <!-- Header -->
@@ -85,21 +85,21 @@ $categories = getCategories();
         <div class="container">
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <div class="flex items-center gap-4">
-                    <a href="/" class="flex items-center gap-2">
+                    <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">H</div>
                         <span class="text-xl font-bold text-gray-900">HOROZON</span>
                     </a>
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="/admin/index.php" class="header-nav-link">Dashboard</a>
-                    <a href="/admin/produits.php" class="header-nav-link active">Produits</a>
-                    <a href="/admin/utilisateurs.php" class="header-nav-link">Utilisateurs</a>
+                    <a href="../index.php" class="header-nav-link">Dashboard</a>
+                    <a href="../produits.php" class="header-nav-link active">Produits</a>
+                    <a href="../utilisateurs.php" class="header-nav-link">Utilisateurs</a>
                 </nav>
                 
                 <div class="flex items-center gap-3">
                     <span class="text-sm text-gray-600"><?= htmlspecialchars($user['name']) ?></span>
-                    <a href="/logout.php" class="btn btn-secondary btn-sm">Déconnexion</a>
+                    <a href="../logout.php" class="btn btn-secondary btn-sm">Déconnexion</a>
                 </div>
             </div>
         </div>
@@ -341,7 +341,7 @@ $categories = getCategories();
         </div>
     </div>
 
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         function editProduct(id, name, description, price, categoryId, stock, isPopular, isPromotion, originalPrice) {
             document.getElementById('editId').value = id;

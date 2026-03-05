@@ -62,7 +62,7 @@ $statusColors = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry" defer></script>
 </head>
 <body>
@@ -71,20 +71,20 @@ $statusColors = [
         <div class="container">
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <div class="flex items-center gap-4">
-                    <a href="/" class="flex items-center gap-2">
+                    <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">HK</div>
                         <span class="text-xl font-bold text-gray-900">HOROZON ALBASERVICE</span>
                     </a>
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="/" class="header-nav-link">Accueil</a>
-                    <a href="/produits.php" class="header-nav-link">Produits</a>
-                    <a href="/client/index.php" class="header-nav-link active">Mon compte</a>
+                    <a href="../index.php" class="header-nav-link">Accueil</a>
+                    <a href="../produits.php" class="header-nav-link">Produits</a>
+                    <a href="../index.php" class="header-nav-link active">Mon compte</a>
                 </nav>
                 
                 <div class="flex items-center gap-3">
-                    <a href="/produits.php" class="btn btn-primary btn-sm">Continuer mes achats</a>
+                    <a href="../produits.php" class="btn btn-primary btn-sm">Continuer mes achats</a>
                     <div class="dropdown">
                         <button onclick="toggleDropdown()" class="flex items-center gap-2 cursor-pointer">
                             <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
@@ -96,8 +96,8 @@ $statusColors = [
                                 <p class="font-semibold"><?= htmlspecialchars($user['name']) ?></p>
                                 <p class="text-sm text-gray-500"><?= htmlspecialchars($user['email']) ?></p>
                             </div>
-                            <a href="/client/index.php" class="dropdown-item">Mon compte</a>
-                            <a href="/logout.php" class="dropdown-item text-red-600">Déconnexion</a>
+                            <a href="../index.php" class="dropdown-item">Mon compte</a>
+                            <a href="../logout.php" class="dropdown-item text-red-600">Déconnexion</a>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@ $statusColors = [
             <div class="container py-6">
                 <div class="flex items-center justify-between">
                     <div>
-                        <a href="/client/index.php" class="text-blue-600 hover:underline text-sm mb-2 inline-block">&larr; Retour à mes commandes</a>
+                        <a href="../index.php" class="text-blue-600 hover:underline text-sm mb-2 inline-block">&larr; Retour à mes commandes</a>
                         <h1 class="text-3xl font-bold text-gradient">Commande #<?= $order['id'] ?></h1>
                     </div>
                     <span class="status-badge <?= $statusColors[$order['status']] ?> px-4 py-2">
@@ -272,7 +272,7 @@ $statusColors = [
                             </div>
                             <div class="p-4">
                                 <p class="text-gray-600 mb-4">Veuillez finaliser votre paiement pour traiter votre commande.</p>
-                                <a href="/checkout.php?order_id=<?= $order['id'] ?>" class="btn btn-primary w-full">
+                                <a href="../checkout.php?order_id=<?= $order['id'] ?>" class="btn btn-primary w-full">
                                     Payer maintenant
                                 </a>
                             </div>
@@ -283,7 +283,7 @@ $statusColors = [
         </div>
     </main>
 
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         let map;
         let deliveryMarker;

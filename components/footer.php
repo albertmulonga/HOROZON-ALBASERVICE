@@ -26,9 +26,9 @@ $shopAddress = getSetting('shop_address') ?? 'Kindu, Congo';
                 <div>
                     <h4 class="footer-title">Liens rapides</h4>
                     <ul class="space-y-2">
-                        <li><a href="/produits.php" class="footer-link">Produits</a></li>
-                        <li><a href="/categories.php" class="footer-link">Catégories</a></li>
-                        <li><a href="/contact.php" class="footer-link">Contact</a></li>
+                        <li><a href="produits.php" class="footer-link">Produits</a></li>
+                        <li><a href="categories.php" class="footer-link">Catégories</a></li>
+                        <li><a href="contact.php" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
 
@@ -36,10 +36,10 @@ $shopAddress = getSetting('shop_address') ?? 'Kindu, Congo';
                 <div>
                     <h4 class="footer-title">Catégories</h4>
                     <ul class="space-y-2">
-                        <li><a href="/categories.php" class="footer-link">Vêtements</a></li>
-                        <li><a href="/categories.php" class="footer-link">Sacs</a></li>
-                        <li><a href="/categories.php" class="footer-link">Chaussures</a></li>
-                        <li><a href="/categories.php" class="footer-link">Accessoires</a></li>
+                        <li><a href="categories.php" class="footer-link">Vêtements</a></li>
+                        <li><a href="categories.php" class="footer-link">Sacs</a></li>
+                        <li><a href="categories.php" class="footer-link">Chaussures</a></li>
+                        <li><a href="categories.php" class="footer-link">Accessoires</a></li>
                     </ul>
                 </div>
 

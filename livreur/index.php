@@ -41,7 +41,7 @@ $completedOrders = array_filter($orders, function($o) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $pageTitle ?></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry" defer></script>
 </head>
 <body>
@@ -50,16 +50,16 @@ $completedOrders = array_filter($orders, function($o) {
         <div class="container">
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <div class="flex items-center gap-4">
-                    <a href="/" class="flex items-center gap-2">
+                    <a href="../index.php" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">HK</div>
                         <span class="text-xl font-bold text-gray-900">HOROZON ALBASERVICE</span>
                     </a>
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="/" class="header-nav-link">Accueil</a>
-                    <a href="/produits.php" class="header-nav-link">Produits</a>
-                    <a href="/livreur/index.php" class="header-nav-link active">Mes livraisons</a>
+                    <a href="../index.php" class="header-nav-link">Accueil</a>
+                    <a href="../produits.php" class="header-nav-link">Produits</a>
+                    <a href="../index.php" class="header-nav-link active">Mes livraisons</a>
                 </nav>
                 
                 <div class="flex items-center gap-3">
@@ -78,9 +78,9 @@ $completedOrders = array_filter($orders, function($o) {
                                 <p class="font-semibold"><?= htmlspecialchars($user['name']) ?></p>
                                 <p class="text-sm text-gray-500">Livreur</p>
                             </div>
-                            <a href="/livreur/index.php" class="dropdown-item">Mes livraisons</a>
+                            <a href="../index.php" class="dropdown-item">Mes livraisons</a>
                             <div class="dropdown-divider"></div>
-                            <a href="/logout.php" class="dropdown-item text-red-600">Déconnexion</a>
+                            <a href="../logout.php" class="dropdown-item text-red-600">Déconnexion</a>
                         </div>
                     </div>
                 </div>
@@ -269,7 +269,7 @@ $completedOrders = array_filter($orders, function($o) {
         </div>
     </div>
 
-    <script src="/js/main.js"></script>
+    <script src="../js/main.js"></script>
     <script>
         let map;
         let directionsRenderer;

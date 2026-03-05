@@ -69,10 +69,10 @@ include 'components/header.php';
                 Votre destination pour des produits de qualité à Kindu, Maniema, RDC
             </p>
             <div class="hero-buttons">
-                <a href="/produits.php" class="btn btn-primary btn-lg">
+                <a href="produits.php" class="btn btn-primary btn-lg">
                     Découvrir nos produits
                 </a>
-                <a href="/register.php" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.3); color: white;">
+                <a href="register.php" class="btn btn-outline btn-lg" style="border-color: rgba(255,255,255,0.3); color: white;">
                     Créer un compte
                 </a>
             </div>
@@ -92,7 +92,7 @@ include 'components/header.php';
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <?php foreach ($services as $service): ?>
-                <a href="/produits.php" class="block">
+                <a href="produits.php" class="block">
                     <div class="product-card">
                         <div class="relative">
                             <img src="<?= $service['image'] ?>" alt="<?= $service['name'] ?>" class="product-card-image" style="height: 200px; object-fit: cover;">
@@ -119,7 +119,7 @@ include 'components/header.php';
                 <h2 class="text-3xl font-bold text-gray-900">Produits Populaires</h2>
                 <p class="text-gray-600 mt-1">Les produits les plus appréciés par nos clients</p>
             </div>
-            <a href="/produits.php" class="btn btn-outline">Voir tout</a>
+            <a href="produits.php" class="btn btn-outline">Voir tout</a>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -208,7 +208,7 @@ include 'components/header.php';
         <p class="text-blue-100 mb-8 max-w-2xl mx-auto">
             milliers de clients satisf Rejoignez desaits et passez votre première commande dès maintenant
         </p>
-        <a href="/produits.php" class="btn btn-white btn-lg" style="background: white; color: var(--primary);">
+        <a href="produits.php" class="btn btn-white btn-lg" style="background: white; color: var(--primary);">
             Commander maintenant
         </a>
     </div>
@@ -275,7 +275,7 @@ include 'components/header.php';
                 </div>
                 
                 <div class="mt-6 pt-6 border-t border-gray-200">
-                    <a href="/contact.php" class="btn btn-primary w-full text-center">
+                    <a href="contact.php" class="btn btn-primary w-full text-center">
                         Nous contacter
                     </a>
                 </div>

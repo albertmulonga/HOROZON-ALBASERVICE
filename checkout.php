@@ -23,9 +23,9 @@ include 'components/header.php';
 <div class="container py-8">
     <!-- Breadcrumb -->
     <nav class="breadcrumb mb-6">
-        <a href="/" class="breadcrumb-item">Accueil</a>
+        <a href="index.php" class="breadcrumb-item">Accueil</a>
         <span class="breadcrumb-separator">/</span>
-        <a href="/panier.php" class="breadcrumb-item">Panier</a>
+        <a href="panier.php" class="breadcrumb-item">Panier</a>
         <span class="breadcrumb-separator">/</span>
         <span class="text-gray-900 font-medium">Checkout</span>
     </nav>

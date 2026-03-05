@@ -29,6 +29,32 @@ function destroySession() {
     session_destroy();
 }
 
+// Obtenir l'URL de base du site
+function getBaseUrl() {
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+    $path = dirname($_SERVER['SCRIPT_NAME']);
+    if ($path === '/' || $path === '\\') {
+        $path = '';
+    }
+    return $protocol . '://' . $host . $path;
+}
+
+// Rediriger vers le tableau de bord approprié
+function redirectToDashboard($role) {
+    switch ($role) {
+        case 'admin':
+            header('Location: admin/index.php');
+            break;
+        case 'livreur':
+            header('Location: livreur/index.php');
+            break;
+        default:
+            header('Location: client/index.php');
+    }
+    exit;
+}
+
 // Obtenir l'utilisateur connecté
 function getCurrentUser() {
     if (!isset($_SESSION['user_id'])) {
@@ -53,12 +79,12 @@ function requireRole($roles) {
     $user = getCurrentUser();
     
     if (!$user) {
-        header('Location: /login.php');
+        header('Location: login.php');
         exit;
     }
     
     if (!in_array($user['role'], $roles)) {
-        header('Location: /login.php');
+        header('Location: login.php');
         exit;
     }
     
@@ -552,16 +578,3 @@ function validatePayment($paymentId, $adminId) {
 }
 
 // Rediriger vers le tableau de bord approprié
-function redirectToDashboard($role) {
-    switch ($role) {
-        case 'admin':
-            header('Location: /admin/index.php');
-            break;
-        case 'livreur':
-            header('Location: /livreur/index.php');
-            break;
-        default:
-            header('Location: /client/index.php');
-    }
-    exit;
-}

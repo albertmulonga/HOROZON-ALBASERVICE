@@ -21,7 +21,7 @@ include 'components/header.php';
 <div class="container py-8">
     <!-- Breadcrumb -->
     <nav class="breadcrumb mb-6">
-        <a href="/" class="breadcrumb-item">Accueil</a>
+        <a href="index.php" class="breadcrumb-item">Accueil</a>
         <span class="breadcrumb-separator">/</span>
         <span class="text-gray-900 font-medium">Produits</span>
     </nav>
@@ -33,13 +33,13 @@ include 'components/header.php';
                 <h3 class="text-lg font-semibold mb-4">Catégories</h3>
                 <ul class="space-y-2">
                     <li>
-                        <a href="/produits.php" class="block py-2 px-3 rounded <?= !$categoryId ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-50' ?>">
+                        <a href="produits.php" class="block py-2 px-3 rounded <?= !$categoryId ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-50' ?>">
                             Tous les produits
                         </a>
                     </li>
                     <?php foreach ($categories as $category): ?>
                         <li>
-                            <a href="/produits.php?category=<?= $category['id'] ?>" class="block py-2 px-3 rounded <?= $categoryId === $category['id'] ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-50' ?>">
+                            <a href="produits.php?category=<?= $category['id'] ?>" class="block py-2 px-3 rounded <?= $categoryId === $category['id'] ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-50' ?>">
                                 <?= htmlspecialchars($category['name']) ?>
                             </a>
                         </li>
@@ -111,7 +111,7 @@ include 'components/header.php';
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     <p class="text-gray-500 text-lg">Aucun produit trouvé</p>
-                    <a href="/produits.php" class="btn btn-primary mt-4">Voir tous les produits</a>
+                    <a href="produits.php" class="btn btn-primary mt-4">Voir tous les produits</a>
                 </div>
             <?php endif; ?>
         </div>
