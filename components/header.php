@@ -90,6 +90,7 @@ if (isset($_SESSION['cart'])) {
                         </div>
                     <?php else: ?>
                         <a href="/login.php" class="btn btn-primary btn-sm">Connexion</a>
+                        <p class="text-xs text-gray-500 mt-1 text-center">Inscription par admin uniquement</p>
                     <?php endif; ?>
                 </div>
             </div>
