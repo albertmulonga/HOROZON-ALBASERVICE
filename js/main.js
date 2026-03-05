@@ -177,6 +177,26 @@ function previewProfileImage(input) {
     }
 }
 
+// Get user GPS location
+function getUserLocation() {
+    const latInput = document.getElementById('latitude');
+    const lngInput = document.getElementById('longitude');
+    
+    if (latInput && lngInput && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                latInput.value = position.coords.latitude;
+                lngInput.value = position.coords.longitude;
+                console.log('GPS coordinates captured: ' + position.coords.latitude + ', ' + position.coords.longitude);
+            },
+            function(error) {
+                console.log('GPS error: ' + error.message);
+            },
+            { enableHighAccuracy: true, timeout: 10000 }
+        );
+    }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     // Update cart count on every page
@@ -249,3 +269,4 @@ window.openModal = openModal;
 window.previewProfileImage = previewProfileImage;
 window.validateForm = validateForm;
 window.updateOrderStatus = updateOrderStatus;
+window.getUserLocation = getUserLocation;

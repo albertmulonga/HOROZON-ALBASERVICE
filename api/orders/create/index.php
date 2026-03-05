@@ -28,6 +28,8 @@ $customerName = $input['customer_name'] ?? '';
 $customerPhone = $input['customer_phone'] ?? '';
 $customerAddress = $input['customer_address'] ?? '';
 $customerCity = $input['customer_city'] ?? '';
+$customerLatitude = $input['customer_latitude'] ?? null;
+$customerLongitude = $input['customer_longitude'] ?? null;
 $transactionNumber = $input['transaction_number'] ?? '';
 $paymentPhone = $input['payment_phone'] ?? '';
 $items = $input['items'] ?? [];
@@ -50,7 +52,9 @@ $result = createOrder(
     $customerPhone,
     $customerAddress,
     $customerCity,
-    $items
+    $items,
+    $customerLatitude,
+    $customerLongitude
 );
 
 if (isset($result['success'])) {

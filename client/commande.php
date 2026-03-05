@@ -2,7 +2,7 @@
 require_once '../config/db.php';
 require_once '../config/functions.php';
 
-$pageTitle = 'Mes Commandes - HIRIZON DE KINDU';
+$pageTitle = 'Mes Commandes - HOROZON ALBASERVICE';
 
 // Require client role
 $user = requireRole(['client']);
@@ -73,7 +73,7 @@ $statusColors = [
                 <div class="flex items-center gap-4">
                     <a href="/" class="flex items-center gap-2">
                         <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center text-white font-bold text-xl">HK</div>
-                        <span class="text-xl font-bold text-gray-900">HIRIZON DE KINDU</span>
+                        <span class="text-xl font-bold text-gray-900">HOROZON ALBASERVICE</span>
                     </a>
                 </div>
                 
@@ -230,9 +230,15 @@ $statusColors = [
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center gap-4 mb-4">
-                                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                                        <?= strtoupper(substr($deliveryPerson['name'], 0, 1)) ?>
-                                    </div>
+                                    <?php if (!empty($deliveryPerson['profile_image'])): ?>
+                                        <img src="<?= htmlspecialchars($deliveryPerson['profile_image']) ?>" 
+                                             alt="<?= htmlspecialchars($deliveryPerson['name']) ?>" 
+                                             class="w-12 h-12 rounded-full object-cover">
+                                    <?php else: ?>
+                                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                                            <?= strtoupper(substr($deliveryPerson['name'], 0, 1)) ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <div>
                                         <h3 class="font-semibold"><?= htmlspecialchars($deliveryPerson['name']) ?></h3>
                                         <p class="text-sm text-gray-500"><?= htmlspecialchars($deliveryPerson['phone'] ?? '') ?></p>

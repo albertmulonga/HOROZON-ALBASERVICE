@@ -60,6 +60,20 @@ include 'components/header.php';
                     <label class="form-label">Ville *</label>
                     <input type="text" name="customer_city" class="form-input" value="<?= htmlspecialchars($user['city'] ?? 'Kindu') ?>" required>
                 </div>
+                
+                <div class="flex items-center gap-4">
+                    <div class="form-group flex-1">
+                        <label class="form-label">Latitude</label>
+                        <input type="text" name="customer_latitude" id="customer_latitude" class="form-input" value="<?= htmlspecialchars($user['latitude'] ?? '') ?>" readonly placeholder="Cliquez sur le bouton pour obtenir">
+                    </div>
+                    <div class="form-group flex-1">
+                        <label class="form-label">Longitude</label>
+                        <input type="text" name="customer_longitude" id="customer_longitude" class="form-input" value="<?= htmlspecialchars($user['longitude'] ?? '') ?>" readonly placeholder="Cliquez sur le bouton pour obtenir">
+                    </div>
+                </div>
+                <button type="button" onclick="getUserLocation()" class="btn btn-secondary mt-2">
+                    📍 Obtenir ma position GPS
+                </button>
             </div>
 
             <!-- Order Items -->
@@ -165,6 +179,8 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
         customer_phone: formData.get('customer_phone'),
         customer_address: formData.get('customer_address'),
         customer_city: formData.get('customer_city'),
+        customer_latitude: formData.get('customer_latitude'),
+        customer_longitude: formData.get('customer_longitude'),
         transaction_number: formData.get('transaction_number'),
         payment_phone: formData.get('payment_phone'),
         items: cart
@@ -192,6 +208,28 @@ document.getElementById('checkoutForm').addEventListener('submit', async functio
         alert('Erreur de connexion');
     }
 });
+</script>
+
+<script>
+    // Auto-get GPS location on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            // Try to get GPS coordinates
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        document.getElementById('customer_latitude').value = position.coords.latitude;
+                        document.getElementById('customer_longitude').value = position.coords.longitude;
+                        console.log('GPS coordinates captured: ' + position.coords.latitude + ', ' + position.coords.longitude);
+                    },
+                    function(error) {
+                        console.log('GPS error: ' + error.message);
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 }
+                );
+            }
+        }, 1000);
+    });
 </script>
 
 <?php include 'components/footer.php'; ?>

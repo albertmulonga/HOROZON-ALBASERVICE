@@ -133,24 +133,24 @@ function getCategoryById($id) {
 }
 
 // Créer un utilisateur
-function createUser($name, $email, $phone, $password, $role = 'client', $address = null, $city = null, $profileImage = null) {
+function createUser($name, $email, $phone, $password, $role = 'client', $address = null, $city = null, $profileImage = null, $latitude = null, $longitude = null) {
     $db = getDB();
     
     // Vérifier si l'email existe déjà
     $stmt = $db->prepare("SELECT id FROM users WHERE LOWER(email) = LOWER(?)");
     $stmt->execute([$email]);
     
-   rowCount() > if ($stmt-> 0) {
+    if ($stmt->rowCount() > 0) {
         return ['error' => 'Cet email est déjà utilisé'];
     }
     
     $passwordHash = hashPassword($password);
     
-    $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role, address, city, profile_image) 
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role, address, city, profile_image, latitude, longitude) 
+                          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     
     try {
-        $stmt->execute([$name, strtolower($email), $phone, $passwordHash, $role, $address, $city, $profileImage]);
+        $stmt->execute([$name, strtolower($email), $phone, $passwordHash, $role, $address, $city, $profileImage, $latitude, $longitude]);
         
         $userId = $db->lastInsertId();
         createSession($userId);

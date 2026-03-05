@@ -15,7 +15,7 @@ if (isset($_SESSION['cart'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $pageTitle ?? 'HIRIZON DE KINDU' ?></title>
+    <title><?= $pageTitle ?? 'HOROZON ALBASERVICE' ?></title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/favicon.ico">
     <script src="/js/main.js" defer></script>
@@ -27,7 +27,7 @@ if (isset($_SESSION['cart'])) {
                 <!-- Logo -->
                 <a href="/" class="header-logo">
                     <div class="header-logo-icon">HK</div>
-                    <span class="header-logo-text hidden md:block">HIRIZON DE KINDU</span>
+                    <span class="header-logo-text hidden md:block">HOROZON ALBASERVICE</span>
                 </a>
 
                 <!-- Navigation -->
@@ -55,9 +55,15 @@ if (isset($_SESSION['cart'])) {
                     <?php if ($user): ?>
                         <div class="dropdown">
                             <button onclick="toggleDropdown()" class="flex items-center gap-2 cursor-pointer">
-                                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
-                                    <?= strtoupper(substr($user['name'], 0, 1)) ?>
-                                </div>
+                                <?php if (!empty($user['profile_image'])): ?>
+                                    <img src="<?= htmlspecialchars($user['profile_image']) ?>" 
+                                         alt="<?= htmlspecialchars($user['name']) ?>" 
+                                         class="w-8 h-8 rounded-full object-cover">
+                                <?php else: ?>
+                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+                                        <?= strtoupper(substr($user['name'], 0, 1)) ?>
+                                    </div>
+                                <?php endif; ?>
                                 <svg class="w-4 h-4 text-gray-600 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                 </svg>

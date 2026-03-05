@@ -20,16 +20,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmPassword = $_POST['confirm_password'] ?? '';
     $address = $_POST['address'] ?? '';
     $city = $_POST['city'] ?? '';
+    $latitude = $_POST['latitude'] ?? '';
+    $longitude = $_POST['longitude'] ?? '';
+    $captchaAnswer = $_POST['captcha_answer'] ?? '';
+    $captchaReal = $_POST['captcha_real'] ?? '';
     
-    // Validate
-    if (empty($name) || empty($email) || empty($password)) {
+    // Verify captcha
+    if ($captchaAnswer !== $captchaReal) {
+        $error = 'Réponse incorrecte. Veuillez résoudre le problème mathématique.';
+    } elseif (empty($name) || empty($email) || empty($password)) {
         $error = 'Veuillez remplir tous les champs obligatoires';
     } elseif ($password !== $confirmPassword) {
         $error = 'Les mots de passe ne correspondent pas';
     } elseif (strlen($password) < 6) {
         $error = 'Le mot de passe doit contenir au moins 6 caractères';
     } else {
-        $result = createUser($name, $email, $phone, $password, 'client', $address, $city);
+        // Handle profile image upload
+        $profileImage = null;
+        if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = 'uploads/profiles/';
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+            $fileName = uniqid() . '_' . basename($_FILES['profile_image']['name']);
+            $targetPath = $uploadDir . $fileName;
+            
+            if (move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetPath)) {
+                $profileImage = $targetPath;
+            }
+        }
+        
+        $result = createUser($name, $email, $phone, $password, 'client', $address, $city, $profileImage, $latitude, $longitude);
         
         if (isset($result['error'])) {
             $error = $result['error'];
@@ -154,6 +175,21 @@ include 'components/header.php';
                 <input type="text" id="city" name="city" class="form-input" placeholder="Votre ville" value="<?= $_POST['city'] ?? '' ?>">
             </div>
 
+            <!-- GPS Coordinates (hidden, auto-filled) -->
+            <input type="hidden" id="latitude" name="latitude" value="<?= $_POST['latitude'] ?? '' ?>">
+            <input type="hidden" id="longitude" name="longitude" value="<?= $_POST['longitude'] ?? '' ?>">
+
+            <div class="form-group">
+                <label class="form-label">Vérification</label>
+                <div class="flex items-center gap-2">
+                    <span id="captchaQuestion" class="text-lg font-semibold text-gray-700">
+                        <?php $n1 = rand(1,9); $n2 = rand(1,9); echo $n1 . ' + ' . $n2 . ' = ?'; ?>
+                    </span>
+                    <input type="hidden" name="captcha_real" value="<?= $n1 + $n2 ?>">
+                    <input type="number" name="captcha_answer" class="form-input" style="width: 80px;" required>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label class="form-label" for="password">Mot de passe *</label>
                 <div class="relative">
@@ -185,3 +221,12 @@ include 'components/header.php';
 </div>
 
 <?php include 'components/footer.php'; ?>
+
+<script>
+    // Auto-get GPS location on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            getUserLocation();
+        }, 1000);
+    });
+</script>

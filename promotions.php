@@ -5,7 +5,7 @@ require_once 'config/functions.php';
 // Initialize database
 initDatabase();
 
-$pageTitle = 'Promotions - HIRIZON DE KINDU';
+$pageTitle = 'Promotions - HOROZON ALBASERVICE';
 
 // Get promotions products
 $db = getDB();
