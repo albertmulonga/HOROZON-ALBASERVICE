@@ -26,7 +26,9 @@ if (isset($_SESSION['cart'])) {
             <div class="flex items-center justify-between" style="height: 4rem;">
                 <!-- Logo -->
                 <a href="/" class="header-logo">
-                    <div class="header-logo-icon">HK</div>
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 flex items-center justify-center text-white font-bold text-xl border-4 border-white shadow-lg">
+                        H
+                    </div>
                     <span class="header-logo-text hidden md:block">HOROZON ALBASERVICE</span>
                 </a>
 
@@ -90,7 +92,6 @@ if (isset($_SESSION['cart'])) {
                         </div>
                     <?php else: ?>
                         <a href="/login.php" class="btn btn-primary btn-sm">Connexion</a>
-                        <p class="text-xs text-gray-500 mt-1 text-center">Inscription par admin uniquement</p>
                     <?php endif; ?>
                 </div>
             </div>

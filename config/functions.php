@@ -328,6 +328,33 @@ function createUserByAdmin($name, $email, $phone, $password, $role, $address = n
     }
 }
 
+// Inscription d'un client (self-registration)
+function registerUser($name, $email, $phone = null, $password) {
+    $db = getDB();
+    
+    // Vérifier si l'email existe déjà
+    $stmt = $db->prepare("SELECT id FROM users WHERE LOWER(email) = LOWER(?)");
+    $stmt->execute([$email]);
+    
+    if ($stmt->rowCount() > 0) {
+        return ['error' => 'Cet email est déjà utilisé. Veuillez vous connecter ou contacter l\'administrateur.'];
+    }
+    
+    $passwordHash = hashPassword($password);
+    
+    // Par défaut, les nouveaux inscrits sont des clients
+    $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role, is_active) 
+                          VALUES (?, ?, ?, ?, 'client', 1)");
+    
+    try {
+        $stmt->execute([$name, strtolower($email), $phone, $passwordHash]);
+        
+        return ['success' => true, 'message' => 'Compte créé avec succès! Vous pouvez maintenant passer vos commandes.'];
+    } catch (Exception $e) {
+        return ['error' => 'Erreur lors de la création du compte. Veuillez réessayer.'];
+    }
+}
+
 // Basculer le statut d'un utilisateur
 function toggleUserStatus($userId) {
     $db = getDB();

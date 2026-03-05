@@ -29,7 +29,6 @@ $shopAddress = getSetting('shop_address') ?? 'Kindu, Congo';
                         <li><a href="/produits.php" class="footer-link">Produits</a></li>
                         <li><a href="/categories.php" class="footer-link">Catégories</a></li>
                         <li><a href="/contact.php" class="footer-link">Contact</a></li>
-                        <li><a href="/register.php" class="footer-link">Créer un compte</a></li>
                     </ul>
                 </div>
 
