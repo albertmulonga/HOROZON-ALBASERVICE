@@ -1,4 +1,11 @@
 <?php
+// Redirect to splash page first
+if (!isset($_SESSION['splash_seen'])) {
+    $_SESSION['splash_seen'] = true;
+    header('Location: splash.php');
+    exit;
+}
+
 require_once 'config/db.php';
 require_once 'config/functions.php';
 

@@ -412,8 +412,42 @@ $splashDuration = 18;
         </div>
     </div>
     
+    <!-- Bouton Skip -->
+    <button id="skipBtn" class="skip-button" onclick="skipSplash()">
+        Passer l'animation <span style="font-size: 12px;">&#9654;</span>
+    </button>
+    
+    <style>
+        .skip-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .skip-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+    
     <!-- Redirection automatique -->
     <script>
+        function skipSplash() {
+            window.location.href = 'index.php';
+        }
+        
         // Redirection après <?= $splashDuration ?> secondes
         setTimeout(function() {
             window.location.href = 'index.php';
