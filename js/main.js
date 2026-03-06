@@ -237,15 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(getUserLocation, 1000);
     }
 });
-    // Update cart count on every page
-    updateCartCount();
-    
-    // Generate captcha if on login page
-    const captchaQuestion = document.getElementById('captchaQuestion');
-    if (captchaQuestion) {
-        generateCaptcha();
-    }
-});
 
 // Form validation
 function validateForm(formId) {

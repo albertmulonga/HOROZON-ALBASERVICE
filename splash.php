@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Page d'animation (Splash Screen)
  * Affiche une animation de 18 secondes avant de rediriger vers l'accueil
@@ -6,6 +7,9 @@
 
 // Duration: 18 seconds
 $splashDuration = 18;
+
+// Clear splash session to allow redirect to index after animation
+$_SESSION['splash_seen'] = true;
 ?>
 <!DOCTYPE html>
 <html lang="fr">

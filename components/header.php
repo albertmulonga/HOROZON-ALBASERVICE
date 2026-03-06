@@ -41,8 +41,27 @@ if (isset($_SESSION['cart'])) {
                     <a href="contact.php" class="header-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'contact') !== false ? 'active' : '' ?>">Contact</a>
                 </nav>
 
+                <!-- Mobile Navigation -->
+                <div id="mobileMenu" class="mobile-nav hidden">
+                    <a href="index.php" class="mobile-nav-link <?= $_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '/index.php' ? 'active' : '' ?>">Accueil</a>
+                    <a href="produits.php" class="mobile-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'produits') !== false ? 'active' : '' ?>">Produits</a>
+                    <a href="categories.php" class="mobile-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'categories') !== false ? 'active' : '' ?>">Catégories</a>
+                    <a href="promotions.php" class="mobile-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'promotions') !== false ? 'active' : '' ?>">Promotions</a>
+                    <a href="contact.php" class="mobile-nav-link <?= strpos($_SERVER['REQUEST_URI'], 'contact') !== false ? 'active' : '' ?>">Contact</a>
+                    <?php if (!$user): ?>
+                        <a href="login.php" class="mobile-nav-link">Connexion</a>
+                    <?php endif; ?>
+                </div>
+
                 <!-- Actions -->
                 <div class="header-actions">
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    
                     <!-- Cart -->
                     <a href="panier.php" class="header-cart">
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

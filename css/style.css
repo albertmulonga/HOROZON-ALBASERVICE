@@ -637,6 +637,33 @@ ul {
     justify-content: center;
 }
 
+/* Mobile Navigation */
+.mobile-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #1d4ed8 100%);
+    padding: 1rem;
+    box-shadow: 0 4px 20px rgba(30, 64, 175, 0.3);
+    z-index: 100;
+}
+
+.mobile-nav-link {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+}
+
 /* Footer */
 .footer {
     background: var(--gray-900);

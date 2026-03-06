@@ -165,19 +165,24 @@ function initDatabase() {
 // Insérer les données par défaut
 function insertDefaultData($db) {
     // Vérifier si l'admin existe déjà
-    $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->execute(['vente@gmail.com']);
+    $stmt = $db->query("SELECT COUNT(*) as cnt FROM users WHERE email = 'vente@gmail.com'");
+    $result = $stmt->fetch();
     
-    if ($stmt->rowCount() == 0) {
+    if ($result['cnt'] == 0) {
         // Créer l'admin par défaut
         $password = hashPassword('admin.com');
-        $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO users (name, email, phone, password, role, is_active) VALUES (?, ?, ?, ?, ?, 1)");
         $stmt->execute(['Administrateur', 'vente@gmail.com', '+243 000 000 001', $password, 'admin']);
+    } else {
+        // S'assurer que l'admin est actif
+        $stmt = $db->prepare("UPDATE users SET is_active = 1 WHERE email = 'vente@gmail.com'");
+        $stmt->execute();
     }
     
     // Vérifier si les catégories existent
-    $stmt = $db->query("SELECT id FROM categories LIMIT 1");
-    if ($stmt->rowCount() == 0) {
+    $stmt = $db->query("SELECT COUNT(*) as cnt FROM categories");
+    $result = $stmt->fetch();
+    if ($result['cnt'] == 0) {
         // Créer les catégories par défaut
         $categories = [
             ['Vêtements', 'Vêtements pour hommes, femmes et enfants'],
